@@ -1,0 +1,9 @@
+
+> v9@0.1.0 dev
+> next dev -p 3003
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3003
+- Network:       http://10.30.30.167:3003
+✓ Ready in 565ms
+[?25h
