@@ -36,13 +36,15 @@ export function LenisProvider() {
 
       lenis = new Lenis({
         autoRaf: true,
+        autoResize: true,
         anchors: {
-          duration: 0.78,
+          duration: 0.9,
           easing: (time) => Math.min(1, 1.001 - 2 ** (-10 * time)),
         },
-        lerp: 0.12,
-        wheelMultiplier: 1.55,
-        touchMultiplier: 1.2,
+        gestureOrientation: "vertical",
+        lerp: 0.1,
+        wheelMultiplier: 1.26,
+        touchMultiplier: 1.08,
         smoothWheel: true,
         syncTouch: false,
         overscroll: false,

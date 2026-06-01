@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GraduationCap,
   School,
@@ -5,7 +7,7 @@ import {
   Star,
   UsersRound,
 } from "lucide-react";
-import type { ComponentType } from "react";
+import { useEffect, useRef, useState, type ComponentType } from "react";
 
 type LegacyStat = {
   value: string;
@@ -66,6 +68,96 @@ const legacyStats: LegacyStat[] = [
     Icon: ShieldCheck,
   },
 ];
+
+const parseLegacyValue = (value: string) => {
+  const target = Number.parseInt(value.replace(/\D/g, ""), 10);
+  const suffix = value.replace(/[0-9]/g, "");
+
+  return {
+    suffix,
+    target: Number.isFinite(target) ? target : 0,
+  };
+};
+
+const CountUpValue = ({ value }: { value: string }) => {
+  const { suffix, target } = parseLegacyValue(value);
+  const [displayValue, setDisplayValue] = useState(0);
+  const valueRef = useRef<HTMLSpanElement | null>(null);
+  const hasAnimatedRef = useRef(false);
+
+  useEffect(() => {
+    const element = valueRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setDisplayValue(target);
+      return;
+    }
+
+    let frameId = 0;
+
+    const startCounting = () => {
+      if (hasAnimatedRef.current) {
+        return;
+      }
+
+      hasAnimatedRef.current = true;
+      const duration = target > 100000 ? 1900 : 1550;
+      const startedAt = window.performance.now();
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const easedProgress = 1 - (1 - progress) ** 3;
+
+        setDisplayValue(Math.round(target * easedProgress));
+
+        if (progress < 1) {
+          frameId = window.requestAnimationFrame(tick);
+        }
+      };
+
+      frameId = window.requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry], currentObserver) => {
+        if (!entry?.isIntersecting) {
+          return;
+        }
+
+        startCounting();
+        currentObserver.disconnect();
+      },
+      {
+        threshold: 0.45,
+      },
+    );
+
+    observer.observe(element);
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      observer.disconnect();
+    };
+  }, [target]);
+
+  return (
+    <span ref={valueRef}>
+      {displayValue}
+      {suffix}
+    </span>
+  );
+};
 
 export function LegacyStatsSection() {
   return (
@@ -237,7 +329,7 @@ export function LegacyStatsSection() {
                   className="legacy-stat-value relative z-10 mt-11 text-[40px] font-extrabold leading-none tracking-[0] drop-shadow-[0_5px_0_rgba(70,57,36,0.08)] sm:text-[45px]"
                   style={{ color: stat.accent }}
                 >
-                  {stat.value}
+                  <CountUpValue value={stat.value} />
                 </p>
 
                 <div className="relative z-10 mx-auto mt-5 flex w-[164px] items-center justify-center gap-2">

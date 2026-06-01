@@ -1363,11 +1363,21 @@ export default function Home() {
     }
 
     let frameId = 0;
+    let metrics = {
+      maxTranslate: 0,
+      scrollableDistance: 1,
+      sectionTop: 0,
+      scrollHeight: 0,
+    };
 
-    const syncPinnedStories = () => {
-      frameId = 0;
-
+    const measurePinnedStories = () => {
       if (window.innerWidth < 1024) {
+        metrics = {
+          maxTranslate: 0,
+          scrollableDistance: 1,
+          sectionTop: 0,
+          scrollHeight: 0,
+        };
         track.style.transform = "";
         section.style.removeProperty("--student-stories-scroll-height");
         return;
@@ -1385,13 +1395,31 @@ export default function Home() {
         window.innerHeight * 2.15,
       );
 
-      section.style.setProperty("--student-stories-scroll-height", `${scrollHeight}px`);
+      if (metrics.scrollHeight !== scrollHeight) {
+        section.style.setProperty("--student-stories-scroll-height", `${scrollHeight}px`);
+      }
 
-      const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const rawProgress = (window.scrollY - section.offsetTop) / scrollableDistance;
+      metrics = {
+        maxTranslate,
+        scrollableDistance: Math.max(scrollHeight - window.innerHeight, 1),
+        sectionTop: section.offsetTop,
+        scrollHeight,
+      };
+    };
+
+    const syncPinnedStories = () => {
+      frameId = 0;
+
+      if (window.innerWidth < 1024) {
+        track.style.transform = "";
+        section.style.removeProperty("--student-stories-scroll-height");
+        return;
+      }
+
+      const rawProgress = (window.scrollY - metrics.sectionTop) / metrics.scrollableDistance;
       const progress = Math.min(Math.max(rawProgress, 0), 1);
 
-      track.style.transform = `translate3d(${-maxTranslate * progress}px, 0, 0)`;
+      track.style.transform = `translate3d(${-metrics.maxTranslate * progress}px, 0, 0)`;
 
       const maxStartIndex = Math.max(studentStories.length - storyCardsPerView, 0);
       const nextActiveIndex = Math.round(progress * maxStartIndex);
@@ -1409,8 +1437,10 @@ export default function Home() {
       frameId = window.requestAnimationFrame(syncPinnedStories);
     };
 
+    measurePinnedStories();
     requestSync();
     window.addEventListener("scroll", requestSync, { passive: true });
+    window.addEventListener("resize", measurePinnedStories);
     window.addEventListener("resize", requestSync);
 
     return () => {
@@ -1419,6 +1449,7 @@ export default function Home() {
       }
 
       window.removeEventListener("scroll", requestSync);
+      window.removeEventListener("resize", measurePinnedStories);
       window.removeEventListener("resize", requestSync);
       track.style.transform = "";
       section.style.removeProperty("--student-stories-scroll-height");
@@ -1618,10 +1649,17 @@ export default function Home() {
     }
 
     let frameId = 0;
+    let lastDecorScrollY = Number.NaN;
 
     const syncDecorDrift = () => {
       frameId = 0;
       const scrollY = window.scrollY || window.pageYOffset;
+
+      if (Math.abs(scrollY - lastDecorScrollY) < 1.5) {
+        return;
+      }
+
+      lastDecorScrollY = scrollY;
 
       root.style.setProperty(
         "--decor-scroll-a-x",
@@ -1665,9 +1703,14 @@ export default function Home() {
       frameId = window.requestAnimationFrame(syncDecorDrift);
     };
 
+    const requestForcedSync = () => {
+      lastDecorScrollY = Number.NaN;
+      requestSync();
+    };
+
     syncDecorDrift();
     window.addEventListener("scroll", requestSync, { passive: true });
-    window.addEventListener("resize", requestSync);
+    window.addEventListener("resize", requestForcedSync);
 
     return () => {
       if (frameId) {
@@ -1675,7 +1718,7 @@ export default function Home() {
       }
 
       window.removeEventListener("scroll", requestSync);
-      window.removeEventListener("resize", requestSync);
+      window.removeEventListener("resize", requestForcedSync);
     };
   }, []);
 
