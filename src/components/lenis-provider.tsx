@@ -36,12 +36,16 @@ export function LenisProvider() {
 
       lenis = new Lenis({
         autoRaf: true,
-        anchors: true,
-        lerp: 0.18,
-        duration: 0.65,
-        wheelMultiplier: 1.22,
-        touchMultiplier: 1.08,
+        anchors: {
+          duration: 0.78,
+          easing: (time) => Math.min(1, 1.001 - 2 ** (-10 * time)),
+        },
+        lerp: 0.12,
+        wheelMultiplier: 1.55,
+        touchMultiplier: 1.2,
+        smoothWheel: true,
         syncTouch: false,
+        overscroll: false,
         stopInertiaOnNavigate: true,
         prevent: (node) => node.closest("[data-lenis-prevent]") !== null,
       });

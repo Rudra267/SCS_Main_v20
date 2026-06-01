@@ -255,28 +255,28 @@ const branchFilterControls = [
   {
     label: "Board",
     value: "CBSE",
-    accent: "#003A8C",
+    accent: "#586238",
     options: ["CBSE", "State Board", "ICSE"],
     icon: "cap",
   },
   {
     label: "State",
     value: "Telangana",
-    accent: "#D99A00",
+    accent: "#A35F23",
     options: ["Telangana", "Andhra Pradesh", "Karnataka"],
     icon: "pin",
   },
   {
     label: "City",
     value: "Hyderabad",
-    accent: "#003A8C",
+    accent: "#586238",
     options: ["Hyderabad", "Rangareddy", "Secunderabad"],
     icon: "building",
   },
   {
     label: "Branch / Area",
     value: "Ameerpet",
-    accent: "#D99A00",
+    accent: "#A35F23",
     options: ["Ameerpet", "Kukatpally", "Dilsukhnagar", "Miyapur"],
     icon: "tower",
   },
@@ -331,7 +331,6 @@ const admissionBranchesByCity: Record<string, string[]> = {
 };
 
 const academicYearOptions = [
-  "2025-26",
   "2026-27",
   "2027-28",
 ];
@@ -1120,7 +1119,7 @@ export default function Home() {
   );
   const [featuredCityStartIndex, setFeaturedCityStartIndex] = useState(0);
   const [activeFeaturedCityName, setActiveFeaturedCityName] = useState(
-    featuredCities[0].name,
+    featuredCities[3].name,
   );
   const [featuredCitySlideDirection, setFeaturedCitySlideDirection] = useState<
     "next" | "prev"
@@ -1177,30 +1176,6 @@ export default function Home() {
     aboutPillarHoverTimeoutRef.current = window.setTimeout(() => {
       setActiveAboutPillarIndex(index);
     }, delay);
-  };
-
-  const cycleStudentStories = (step: number) => {
-    const maxStartIndex = Math.max(studentStories.length - storyCardsPerView, 0);
-    const nextIndex =
-      activeStoryIndex + step > maxStartIndex
-        ? 0
-        : activeStoryIndex + step < 0
-          ? maxStartIndex
-          : activeStoryIndex + step;
-
-    setActiveStoryIndex(nextIndex);
-
-    const section = studentStoriesSectionRef.current;
-
-    if (section && window.innerWidth >= 1024) {
-      const scrollableDistance = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const progress = maxStartIndex > 0 ? nextIndex / maxStartIndex : 0;
-
-      window.scrollTo({
-        top: section.offsetTop + scrollableDistance * progress,
-        behavior: "smooth",
-      });
-    }
   };
 
   const handleOpenAdmissionModal = (cityName: string) => {
@@ -1293,7 +1268,7 @@ export default function Home() {
 
   useEffect(() => {
     const syncStoryCardsPerView = () => {
-      setStoryCardsPerView(window.innerWidth >= 1280 ? 2 : 1);
+      setStoryCardsPerView(window.innerWidth >= 1024 ? 3 : 1);
     };
 
     syncStoryCardsPerView();
@@ -1406,8 +1381,8 @@ export default function Home() {
 
       const maxTranslate = Math.max(track.scrollWidth - viewport.clientWidth, 0);
       const scrollHeight = Math.max(
-        window.innerHeight + maxTranslate + 180,
-        window.innerHeight * 1.6,
+        window.innerHeight + maxTranslate * 1.65 + 360,
+        window.innerHeight * 2.15,
       );
 
       section.style.setProperty("--student-stories-scroll-height", `${scrollHeight}px`);
@@ -2258,27 +2233,72 @@ export default function Home() {
 
       <LegacyStatsSection />
 
-      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_0,#fff_0%_48%,#eaffc4_100%)] px-2 pb-24 pt-8 sm:px-2.5 sm:pb-24 sm:pt-12 lg:px-3 lg:pb-28 lg:pt-14">
-        <div className="relative mx-auto w-full max-w-[1510px]">
+      <section className="relative isolate overflow-hidden bg-[#fffdf9] px-2 pb-18 pt-10 sm:px-4 sm:pb-22 sm:pt-14 lg:px-5 lg:pb-24 lg:pt-16">
+        <div className="relative mx-auto w-full max-w-[1600px] overflow-hidden rounded-[26px] border border-[#eadfca]/70 bg-[radial-gradient(circle_at_50%_12%,rgba(255,255,255,0.96)_0%,rgba(255,251,243,0.95)_44%,rgba(246,238,220,0.9)_100%)] px-4 py-10 shadow-[0_28px_70px_rgba(98,78,45,0.12)] sm:px-8 sm:py-12 lg:px-10 lg:py-14">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-[0.13]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(129, 105, 61, 0.56) 1.4px, transparent 2.1px)",
+              backgroundSize: "16px 16px",
+              maskImage:
+                "radial-gradient(circle at 2% 2%, black 0 10%, transparent 18%), radial-gradient(circle at 98% 2%, black 0 10%, transparent 18%), radial-gradient(circle at 2% 98%, black 0 10%, transparent 18%), radial-gradient(circle at 98% 98%, black 0 10%, transparent 18%)",
+              WebkitMaskImage:
+                "radial-gradient(circle at 2% 2%, black 0 10%, transparent 18%), radial-gradient(circle at 98% 2%, black 0 10%, transparent 18%), radial-gradient(circle at 2% 98%, black 0 10%, transparent 18%), radial-gradient(circle at 98% 98%, black 0 10%, transparent 18%)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute left-0 top-[72px] hidden h-[270px] w-[190px] bg-contain bg-left-top bg-no-repeat opacity-[0.22] lg:block"
+            style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute right-0 top-[82px] hidden h-[270px] w-[190px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.18] lg:block"
+            style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          />
           <div
             data-section-reveal
             ref={featuredCitiesSectionRef}
-            className="section-reveal-up"
+            className="section-reveal-up relative z-10"
             style={{ animationDelay: "180ms" }}
           >
-            <h3
-              data-section-reveal
-              style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
-              className="section-reveal-up mb-8 bg-[linear-gradient(135deg,#a9ff14_0%,#348aff_34%,#1c1b3f_64%,#0b54cf_100%)] bg-clip-text text-center text-[28px] font-normal tracking-[0] text-transparent sm:mb-10 sm:text-[36px]"
-            >
-              Explore Admission Details in Your Famous Cities
-            </h3>
+            <div className="mx-auto max-w-[920px] text-center">
+              <div className="mx-auto flex w-[170px] items-center justify-center gap-6 text-[#4B5637]">
+                <span className="h-px flex-1 bg-current" />
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-8 w-8 fill-current">
+                  <path d="M12 2.75a7 7 0 0 0-7 7c0 5.55 7 11.5 7 11.5s7-5.95 7-11.5a7 7 0 0 0-7-7Zm0 9.55a2.55 2.55 0 1 1 0-5.1 2.55 2.55 0 0 1 0 5.1Z" />
+                </svg>
+                <span className="h-px flex-1 bg-current" />
+              </div>
 
-            <div className="flex items-center justify-center gap-3 sm:gap-5">
+              <h3
+                data-section-reveal
+                style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+                className="section-reveal-up mt-5 text-[28px] font-normal leading-[1.18] tracking-[0] text-[#273226] sm:text-[36px] lg:text-[42px]"
+              >
+                <span>Explore </span>
+                <span className="text-[#8F5C31]">Admission Details</span>
+                <span> in Your Famous Cities</span>
+              </h3>
+
+              <div className="mx-auto mt-7 flex w-[230px] items-center justify-center gap-4 text-[#8F5C31]">
+                <svg aria-hidden="true" viewBox="0 0 70 18" className="h-5 flex-1 text-[#9BA66E]">
+                  <path d="M4 9h22M18 9c-3-7-8-7-12-4 4 5 8 6 12 4Zm9 0c-3-7-8-7-12-4 4 5 8 6 12 4Zm-1 0c-1 6-7 8-13 6 3-6 8-8 13-6Z" fill="currentColor" opacity="0.9" />
+                </svg>
+                <span className="h-3 w-3 rounded-full bg-current" />
+                <svg aria-hidden="true" viewBox="0 0 70 18" className="h-5 flex-1 scale-x-[-1] text-[#9BA66E]">
+                  <path d="M4 9h22M18 9c-3-7-8-7-12-4 4 5 8 6 12 4Zm9 0c-3-7-8-7-12-4 4 5 8 6 12 4Zm-1 0c-1 6-7 8-13 6 3-6 8-8 13-6Z" fill="currentColor" opacity="0.9" />
+                </svg>
+              </div>
+            </div>
+
+            <div className="mt-9 flex items-center justify-center gap-3 sm:mt-10 sm:gap-4 xl:gap-5">
               <button
                 type="button"
                 aria-label="Previous city"
-                className="hidden h-[56px] w-[56px] shrink-0 items-center justify-center rounded-full border border-[#4F4CB0]/28 bg-white/72 text-[#4F4CB0] shadow-[0_16px_36px_rgba(79,76,176,0.14)] transition-all duration-300 hover:-translate-x-1 hover:border-[#4F4CB0]/55 hover:bg-white xl:inline-flex"
+                className="hidden h-[56px] w-[56px] shrink-0 items-center justify-center rounded-full bg-[#4B5637] text-white shadow-[0_18px_34px_rgba(58,67,40,0.26)] transition-all duration-300 hover:-translate-x-1 hover:bg-[#62703f] xl:inline-flex"
                 onClick={handleFeaturedCityPrev}
               >
                 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
@@ -2292,10 +2312,11 @@ export default function Home() {
                 </svg>
               </button>
 
-              <div className="grid min-w-0 flex-1 grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5 xl:grid-cols-7">
+              <div className="grid min-w-0 flex-1 grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 xl:grid-cols-7 xl:gap-5">
                 {visibleFeaturedCities.map((city, index) => {
                   const isFeaturedCityActive =
                     city.name === activeFeaturedCityName;
+                  const cityAccent = index % 2 === 0 ? "#667142" : "#9B6B33";
 
                   return (
                     <button
@@ -2304,14 +2325,14 @@ export default function Home() {
                       onMouseEnter={() => setActiveFeaturedCityName(city.name)}
                       onFocus={() => setActiveFeaturedCityName(city.name)}
                       onClick={() => handleOpenAdmissionModal(city.name)}
-                      className={`city-carousel-card group relative flex min-h-[164px] flex-col items-center justify-between overflow-hidden rounded-[22px] border bg-white/72 px-4 py-5 text-center shadow-[0_24px_54px_rgba(107,147,214,0.10)] backdrop-blur-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-[#4F4CB0]/50 hover:bg-white sm:min-h-[210px] ${
+                      className={`city-carousel-card group relative flex min-h-[160px] flex-col items-center justify-between overflow-hidden rounded-[18px] border bg-[#fffdf8]/82 px-4 py-6 text-center shadow-[0_16px_36px_rgba(86,68,42,0.08)] backdrop-blur-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-[#fffaf0] sm:min-h-[208px] sm:px-4 sm:py-7 ${
                         featuredCitiesVisible
                           ? "translate-y-0 scale-100 opacity-100"
                           : "translate-y-6 scale-[0.96] opacity-0"
                       } ${
                         isFeaturedCityActive
-                          ? "border-[#4F4CB0]/85"
-                          : "border-[#6B93D6]/32"
+                          ? "border-[#9B6B33] bg-[radial-gradient(circle_at_50%_0%,rgba(255,238,204,0.82),rgba(255,253,248,0.9)_58%)] shadow-[0_24px_52px_rgba(142,89,40,0.14)]"
+                          : "border-[#d9cfbd] hover:border-[#9B6B33]/55"
                       }`}
                       style={
                         {
@@ -2325,36 +2346,33 @@ export default function Home() {
                       }
                     >
                       <div
-                        className={`h-[86px] w-[94px] transition-all duration-500 group-hover:scale-105 sm:h-[108px] sm:w-[112px] ${
-                          isFeaturedCityActive
-                            ? "text-[#4F4CB0]"
-                            : "text-[#9FC164]"
-                        }`}
+                        className="h-[72px] w-[88px] transition-all duration-500 group-hover:scale-105 sm:h-[96px] sm:w-[112px]"
+                        style={{ color: isFeaturedCityActive ? "#9B6B33" : cityAccent }}
                       >
                         <CityMonumentIcon city={city.name} />
                       </div>
                       <span
-                        className={`text-[15px] font-extrabold transition-colors sm:text-[18px] ${
+                        className={`text-[16px] font-extrabold transition-colors sm:text-[19px] ${
                           isFeaturedCityActive
-                            ? "text-[#4F4CB0]"
-                            : "text-[#2B3648]"
+                            ? "text-[#8F5C31]"
+                            : "text-[#171a12]"
                         }`}
                       >
                         {city.name}
                       </span>
                       <span className="flex h-4 items-center justify-center gap-2">
                         <span
-                          className={`h-1.5 w-1.5 rounded-full ${
+                          className={`h-2 w-2 rounded-full ${
                             isFeaturedCityActive
-                              ? "bg-[#4F4CB0]"
-                              : "bg-[#4F4CB0]/75"
+                              ? "bg-[#9B6B33]"
+                              : "bg-[#667142]"
                           }`}
                         />
                         <span
-                          className={`h-1.5 rounded-full transition-all ${
+                          className={`h-2 rounded-full transition-all ${
                             isFeaturedCityActive
-                              ? "w-8 bg-[#4F4CB0]"
-                              : "w-0 bg-[#4F4CB0]/0"
+                              ? "w-9 bg-[#9B6B33]"
+                              : "w-0 bg-[#9B6B33]/0"
                           }`}
                         />
                       </span>
@@ -2366,7 +2384,7 @@ export default function Home() {
               <button
                 type="button"
                 aria-label="Next city"
-                className="hidden h-[56px] w-[56px] shrink-0 items-center justify-center rounded-full border border-[#4F4CB0]/28 bg-white/72 text-[#4F4CB0] shadow-[0_16px_36px_rgba(79,76,176,0.14)] transition-all duration-300 hover:translate-x-1 hover:border-[#4F4CB0]/55 hover:bg-white xl:inline-flex"
+                className="hidden h-[56px] w-[56px] shrink-0 items-center justify-center rounded-full bg-[#4B5637] text-white shadow-[0_18px_34px_rgba(58,67,40,0.26)] transition-all duration-300 hover:translate-x-1 hover:bg-[#62703f] xl:inline-flex"
                 onClick={handleFeaturedCityNext}
               >
                 <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
@@ -2383,82 +2401,36 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%_52%,#3c85ff57_100%)] px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-[72px] lg:px-8 lg:pb-24 lg:pt-20">
+      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_6%,#fffaf2_0%,#fffdf9_46%,#f6eddf_100%)] px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14 lg:px-8 lg:pb-18 lg:pt-16">
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-dots absolute left-4 top-10 hidden h-[118px] w-[150px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(0deg)",
-              "--decor-x": "-18px",
-              "--decor-y": "-16px",
-              "--decor-opacity": "0.62",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-arc absolute -right-[90px] -top-[94px] hidden h-[268px] w-[430px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(18deg)",
-              "--decor-start-rotate": "30deg",
-              "--decor-x": "24px",
-              "--decor-y": "-28px",
-              "--decor-opacity": "0.82",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-diamond absolute right-[5%] top-[72px] hidden h-[96px] w-[96px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(45deg)",
-              "--decor-start-rotate": "25deg",
-              "--decor-x": "18px",
-              "--decor-y": "-12px",
-              "--decor-opacity": "0.6",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-slab absolute -left-[132px] bottom-[-76px] hidden h-[210px] w-[330px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(24deg)",
-              "--decor-start-rotate": "10deg",
-              "--decor-x": "-24px",
-              "--decor-y": "30px",
-              "--decor-opacity": "0.64",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-ring absolute -left-[34px] bottom-[62px] hidden h-[184px] w-[150px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-12deg)",
-              "--decor-start-rotate": "-28deg",
-              "--decor-x": "-20px",
-              "--decor-y": "22px",
-              "--decor-opacity": "0.78",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-[94px] right-4 hidden h-[130px] w-[126px] opacity-50 lg:block"
+          className="absolute left-0 top-0 hidden h-[118px] w-[170px] opacity-[0.2] lg:block"
           style={{
             backgroundImage:
-              "radial-gradient(circle, rgba(107,147,214,0.32) 2.5px, transparent 3px)",
+              "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.4px, transparent 3px)",
+            backgroundSize: "22px 22px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -left-1 top-7 hidden h-[300px] w-[210px] bg-contain bg-left-top bg-no-repeat opacity-[0.22] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-10 hidden h-[280px] w-[200px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.16] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-[88px] -left-[104px] hidden h-[210px] w-[300px] rounded-tr-[180px] bg-[#e6dac2]/70 lg:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-[30px] right-7 hidden h-[126px] w-[130px] opacity-[0.26] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.3px, transparent 3px)",
             backgroundSize: "20px 20px",
           }}
         />
@@ -2466,7 +2438,7 @@ export default function Home() {
           aria-hidden="true"
           viewBox="0 0 1440 220"
           preserveAspectRatio="none"
-          className="absolute left-0 top-[245px] hidden h-[220px] w-full text-[#9FC164]/12 lg:block"
+          className="absolute left-0 top-[270px] hidden h-[220px] w-full text-[#b99561]/18 lg:block"
         >
           <path
             d="M-40 12C210 170 375 160 610 130C844 101 1033 151 1480 6"
@@ -2484,21 +2456,33 @@ export default function Home() {
 
         <div className="relative mx-auto w-full max-w-[1510px]">
           <div className="mx-auto max-w-[1030px] text-center">
-
+            <div className="mx-auto flex w-[170px] items-center justify-center gap-4 text-[#4B5637]">
+              <span className="h-px flex-1 bg-current" />
+              <svg aria-hidden="true" viewBox="0 0 34 34" className="h-7 w-7">
+                <path d="M17 29V6" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2.4" />
+                <path d="M17 13C11 12 8 8 8 3c6 1 9 5 9 10Z" fill="currentColor" opacity="0.86" />
+                <path d="M17 20c7-1 11-5 11-11-7 1-11 5-11 11Z" fill="currentColor" opacity="0.72" />
+                <path d="M17 28c-6-.6-10-4-11-10 6 .4 10 4 11 10Z" fill="currentColor" opacity="0.72" />
+              </svg>
+              <span className="h-px flex-1 bg-current" />
+            </div>
 
             <h2
               data-wave-reveal
-              style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-              className="legacy-heading-wave wave-reveal-heading mt-5 text-[34px] font-extrabold leading-[1.08] tracking-[0] text-[#101A5D] sm:text-[48px] lg:text-[57px]"
+              style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+              className="legacy-heading-wave wave-reveal-heading mt-3 text-[32px] font-normal leading-[1.08] tracking-[0] text-[#1f2d1e] sm:text-[46px] lg:text-[56px]"
             >
               <span>
-                Experience Global Education Across{" "}
-                <span className="relative inline-block pb-2 text-[#D99A00]">
+                Experience Global Education
+              </span>
+              <span className="block">
+                Across{" "}
+                <span className="relative inline-block pb-2 text-[#8F5C31]">
                   States
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 120 18"
-                    className="legacy-shape-underline absolute -bottom-2 left-1/2 h-5 w-[116%] -translate-x-1/2 text-[#4F4CB0]"
+                    className="legacy-shape-underline absolute -bottom-2 left-1/2 h-5 w-[116%] -translate-x-1/2 text-[#8F5C31]"
                     preserveAspectRatio="none"
                   >
                     <path
@@ -2523,7 +2507,7 @@ export default function Home() {
             <svg
               aria-hidden="true"
               viewBox="0 0 118 12"
-              className="mx-auto mt-7 block h-3 w-[118px] text-[#4F4CB0]"
+              className="mx-auto mt-4 block h-3 w-[118px] text-[#7A893E]"
             >
               <path
                 d="M0 6H44"
@@ -2544,7 +2528,7 @@ export default function Home() {
 
             <p
               data-section-reveal
-              className="legacy-copy-reveal legacy-delay-4 mx-auto mt-5 max-w-[760px] text-[15px] font-semibold leading-7 text-[#7280A3] sm:text-[17px] sm:leading-8"
+              className="legacy-copy-reveal legacy-delay-4 mx-auto mt-4 max-w-[720px] text-[14px] font-medium leading-6 text-[#464843] sm:text-[16px] sm:leading-7"
             >
               Discover collaborative programs, cultural exposure, research
               pathways, and future-ready learning experiences that connect
@@ -2552,27 +2536,29 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 flex max-w-[1510px] flex-col gap-3 lg:min-h-[390px] lg:flex-row lg:items-stretch lg:gap-4">
+          <div className="mx-auto mt-8 flex max-w-[1360px] flex-col gap-3 lg:min-h-[340px] lg:flex-row lg:items-stretch lg:gap-3 xl:gap-4">
             {(() => {
               const panelIcons: Record<string, string> = {
                 Collaborations: "handshake",
+                "Degree Opportunities": "globe",
                 "Language and Culture": "globe",
                 "International Research Projects": "people",
                 "Global Faculty": "cap",
                 "Career Pathways": "briefcase",
               };
               const panelColors: Record<string, string> = {
-                Collaborations: "#9FC164",
-                "Language and Culture": "#4F4CB0",
-                "International Research Projects": "#9FC164",
-                "Global Faculty": "#4F4CB0",
-                "Career Pathways": "#4F4CB0",
+                Collaborations: "#667142",
+                "Degree Opportunities": "#9B6B33",
+                "Language and Culture": "#9B6B33",
+                "International Research Projects": "#667142",
+                "Global Faculty": "#9B6B33",
+                "Career Pathways": "#9B6B33",
               };
 
               return (
                 <>
                   {aboutExperiencePillars.map((pillar, index) => {
-                    const color = panelColors[pillar.label] ?? "#4F4CB0";
+                    const color = panelColors[pillar.label] ?? "#667142";
                     const isActive = index === activeAboutPillarIndex;
 
                     return (
@@ -2582,17 +2568,17 @@ export default function Home() {
                         onMouseEnter={() => activateAboutPillar(index, 70)}
                         onFocus={() => activateAboutPillar(index)}
                         onClick={() => activateAboutPillar(index)}
-                        className={`group relative overflow-hidden rounded-[22px] border bg-white/86 text-left shadow-[0_24px_58px_rgba(107,147,214,0.16)] outline-none backdrop-blur-sm transition-[flex,flex-basis,flex-grow,opacity,transform,border-color,box-shadow,min-height,width] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:ring-2 focus-visible:ring-[#4F4CB0]/40 ${
+                        className={`group relative overflow-hidden rounded-[24px] border bg-[#fffaf2]/82 text-left shadow-[0_22px_52px_rgba(84,67,42,0.12)] outline-none backdrop-blur-sm transition-[flex,flex-basis,flex-grow,opacity,transform,border-color,box-shadow,min-height,width] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[#667142]/40 ${
                           isActive
-                            ? "min-h-[318px] border-white p-0 sm:min-h-[390px] lg:flex-[1_1_1120px]"
-                            : "min-h-[96px] p-4 lg:flex-[0_0_82px] lg:px-3 lg:py-4"
+                            ? "min-h-[280px] border-[#d9d6b8] p-0 sm:min-h-[340px] lg:flex-[0_0_900px] xl:flex-[0_0_920px]"
+                            : "min-h-[84px] border-[#dfd3bd] px-3 py-3 lg:flex-[0_0_66px] lg:px-2 lg:py-6 xl:flex-[0_0_72px]"
                         } ${
                           aboutPillarsIntroVisible
                             ? "translate-y-0 opacity-100"
                             : "translate-y-7 opacity-0"
                         }`}
                         style={{
-                          borderColor: isActive ? "#FFFFFF" : `${color}30`,
+                          borderColor: isActive ? "#d5d0ad" : `${color}45`,
                           transitionDelay: `${index * 70}ms`,
                         }}
                         aria-pressed={isActive}
@@ -2609,8 +2595,8 @@ export default function Home() {
                             src={pillar.image}
                             alt={pillar.title}
                             fill
-                            sizes="(max-width: 1023px) 100vw, 78vw"
-                            className="rounded-[18px] object-cover"
+                            sizes="(max-width: 1023px) 100vw, 920px"
+                            className="rounded-[18px] bg-[#eef0e6] object-contain"
                             style={{
                               animation: isActive
                                 ? "panelMediaReveal 680ms cubic-bezier(0.22,1,0.36,1) both"
@@ -2618,38 +2604,30 @@ export default function Home() {
                             }}
                             priority={index === 0}
                           />
-                          <div className="pointer-events-none absolute inset-0 rounded-[18px] border-[10px] border-white" />
-                          <div className="absolute inset-0 rounded-[18px] bg-[linear-gradient(180deg,rgba(16,26,93,0)_70%,rgba(16,26,93,0.08)_100%)]" />
+                          <div className="pointer-events-none absolute inset-0 rounded-[18px] border-[7px] border-[#d9d6b8]" />
+                          <div className="absolute inset-0 rounded-[18px] bg-[linear-gradient(90deg,rgba(48,64,35,0.34)_0%,rgba(48,64,35,0.07)_38%,rgba(255,255,255,0)_100%)]" />
                         </div>
 
                         <div
-                          className={`relative z-10 flex h-full min-h-[96px] items-center gap-4 transition-all duration-500 lg:min-h-[330px] lg:flex-col lg:justify-between ${
+                          className={`relative z-10 flex h-full min-h-[84px] items-center gap-3 transition-all duration-500 lg:min-h-[290px] lg:flex-col lg:justify-start ${
                             isActive
                               ? "pointer-events-none translate-y-4 opacity-0"
                               : "translate-y-0 opacity-100"
                           }`}
                         >
                           <span
-                            className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-[7px] border-white shadow-[0_12px_26px_rgba(16,26,93,0.14)]"
-                            style={{
-                              backgroundColor: color,
-                              color:
-                                pillar.label === "Language and Culture"
-                                  ? "#101A5D"
-                                  : "#FFFFFF",
-                            }}
+                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[6px] border-white text-white shadow-[0_12px_26px_rgba(80,58,32,0.16)] lg:h-13 lg:w-13"
+                            style={{ backgroundColor: color }}
                           >
                             <AboutExperienceIcon
                               icon={panelIcons[pillar.label] ?? "globe"}
                             />
                           </span>
-                          <span
-                            className="hidden h-px w-9 lg:block"
-                            style={{ backgroundColor: color }}
-                          />
-                          <span className="text-[16px] font-extrabold leading-tight text-[#101A5D] lg:[writing-mode:vertical-rl] lg:rotate-180 lg:text-[19px]">
+                          <span className="hidden h-7 w-px rounded-full lg:block" style={{ backgroundColor: color }} />
+                          <span className="text-[15px] font-semibold leading-tight text-[#24251f] lg:mt-auto lg:[writing-mode:vertical-rl] lg:rotate-180 lg:text-[20px]">
                             {pillar.label.replace(" Projects", " Research")}
                           </span>
+                          <span className="hidden h-7 w-1 rounded-full lg:mt-3 lg:block" style={{ backgroundColor: color }} />
                         </div>
                       </button>
                     );
@@ -2667,192 +2645,297 @@ export default function Home() {
         <div
           data-lenis-prevent
           onClick={handleCloseAdmissionModal}
-          className={`fixed inset-0 z-[80] flex items-center justify-center px-4 py-6 backdrop-blur-[4px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`fixed inset-0 z-[80] flex items-center justify-center px-4 py-6 backdrop-blur-[5px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isAdmissionModalClosing
-              ? "bg-[#173B6C]/0 opacity-0"
-              : "bg-[#173B6C]/58 opacity-100"
+              ? "bg-[#122844]/0 opacity-0"
+              : "bg-[#122844]/62 opacity-100"
           }`}
         >
           <div
             onClick={(event) => event.stopPropagation()}
-            className={`relative w-full max-w-[980px] overflow-hidden rounded-[28px] bg-[#E9EFF9] shadow-[0_28px_90px_rgba(23,59,108,0.28)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            className={`relative max-h-[calc(100vh-32px)] w-full max-w-[1160px] overflow-x-hidden overflow-y-auto rounded-[28px] border border-[#78915b] bg-[radial-gradient(circle_at_18%_0%,rgba(244,229,200,0.8)_0%,rgba(244,229,200,0.28)_18%,transparent_34%),linear-gradient(135deg,#fffaf1_0%,#fffdf8_48%,#fff4df_100%)] shadow-[0_30px_95px_rgba(18,40,68,0.34)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
               isAdmissionModalClosing
                 ? "translate-y-6 scale-[0.94] opacity-0"
                 : "translate-y-0 scale-100 opacity-100"
             }`}
           >
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-0 top-0 h-[150px] w-[145px] bg-contain bg-left-top bg-no-repeat opacity-65"
+              style={{ backgroundImage: "url('/png/leaf1.png')" }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-0 right-0 h-[140px] w-[140px] scale-x-[-1] bg-contain bg-left-bottom bg-no-repeat opacity-65"
+              style={{ backgroundImage: "url('/png/leaf1.png')" }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-12 bottom-0 h-[170px] w-[310px] rounded-tl-[220px] border-l border-t border-[#d8bb80]/45 bg-[#fff0d2]/38"
+            />
             <button
               type="button"
               aria-label="Close admission form"
               onClick={handleCloseAdmissionModal}
-              className="absolute right-5 top-5 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#4F4CB0] bg-[#E9EFF9] text-[#173B6C] transition-colors hover:bg-[#E9EFF9]"
+              className="absolute right-6 top-6 z-30 inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#b8894a] bg-white/72 text-[#14251b] shadow-[0_10px_25px_rgba(71,52,28,0.12)] transition-colors hover:bg-[#fff6e6]"
             >
               <svg
                 aria-hidden="true"
                 viewBox="0 0 20 20"
                 fill="none"
-                className="h-5 w-5"
+                className="h-6 w-6"
               >
                 <path
                   d="m6 6 8 8M14 6l-8 8"
                   stroke="currentColor"
-                  strokeWidth="1.7"
+                  strokeWidth="1.65"
                   strokeLinecap="round"
                 />
               </svg>
             </button>
 
             <div
-              className={`border-b border-[#4F4CB0] px-6 py-6 text-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-8 ${
+              className={`relative z-10 px-6 pb-4 pt-16 text-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:px-10 sm:pt-18 ${
                 isAdmissionModalClosing
                   ? "translate-y-2 opacity-0"
                   : "translate-y-0 opacity-100 delay-75"
               }`}
             >
               <h3
-                style={{ fontFamily: "var(--font-plus-jakarta-sans)" }}
-                className="text-[28px] font-medium tracking-[-0.03em] text-[#173B6C]"
+                style={{ fontFamily: "var(--font-cinzel)" }}
+                className="text-[34px] font-bold leading-none tracking-[-0.025em] text-[#233b2a] sm:text-[44px]"
               >
-                Admissions open
+                Admissions Open
               </h3>
-              <p className="mt-2 text-[14px] text-[#9FC164]">
-                Enquire for admission details in {admissionForm.city}.
+              <p className="mt-3 text-[17px] font-medium leading-tight text-[#2b2f31] sm:text-[22px]">
+                Enquire for admission details in{" "}
+                <span className="font-bold text-[#4f7338]">
+                  {admissionForm.city}.
+                </span>
               </p>
+              <div className="mx-auto mt-3 flex w-[170px] items-center justify-center gap-3 text-[#7b9855]">
+                <span className="h-px flex-1 bg-current" />
+                <span className="relative h-4 w-7">
+                  <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current" />
+                  <span className="absolute left-1 top-1/2 h-px w-10 origin-left -translate-y-1/2 rotate-[-8deg] bg-current" />
+                </span>
+                <span className="h-px flex-1 bg-current" />
+              </div>
             </div>
 
             <form
               onSubmit={(event) => event.preventDefault()}
-              className={`grid gap-5 px-6 py-6 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:grid-cols-2 sm:px-8 sm:py-8 ${
+              className={`relative z-10 grid gap-x-9 gap-y-5 px-6 pb-6 pt-1 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:grid-cols-2 sm:px-16 sm:pb-8 ${
                 isAdmissionModalClosing
                   ? "translate-y-3 opacity-0"
                   : "translate-y-0 opacity-100 delay-150"
               }`}
             >
               <label className="block">
-                <span className="mb-2 block text-[15px] font-medium text-[#9FC164]">
-                  Parent Name*
+                <span className="mb-2 block text-[15px] font-bold text-[#262c2d]">
+                  Parent Name<span className="text-[#a65b18]">*</span>
                 </span>
-                <input
-                  type="text"
-                  value={admissionForm.parentName}
-                  onChange={(event) =>
-                    handleAdmissionFormChange("parentName", event.target.value)
-                  }
-                  className="h-12 w-full rounded-[16px] border border-[#4F4CB0] px-4 text-[15px] text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                />
+                <div className="flex min-h-[54px] overflow-hidden rounded-[14px] border border-[#b9bd9e] bg-white/82 shadow-[0_10px_20px_rgba(61,53,37,0.07)] transition-colors focus-within:border-[#657c48]">
+                  <span className="flex w-[58px] shrink-0 items-center justify-center rounded-r-[14px] bg-[#f2f1e6] text-[#3f6935]">
+                    <BranchNetworkIcon icon="user" className="h-5 w-5" />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Enter parent name"
+                    value={admissionForm.parentName}
+                    onChange={(event) =>
+                      handleAdmissionFormChange("parentName", event.target.value)
+                    }
+                    className="min-w-0 flex-1 bg-transparent px-4 text-[15px] font-medium text-[#1d2e25] outline-none placeholder:text-[#7e8585]"
+                  />
+                </div>
               </label>
 
               <div className="block">
-                <span className="mb-2 block text-[15px] font-medium text-[#9FC164]">
-                  Mobile*
+                <span className="mb-2 block text-[15px] font-bold text-[#262c2d]">
+                  Mobile Number<span className="text-[#a65b18]">*</span>
                 </span>
-                <div className="grid grid-cols-[108px_minmax(0,1fr)] gap-3">
-                  <input
-                    type="text"
-                    value={admissionForm.countryCode}
-                    readOnly
-                    aria-label="Country code"
-                    className="h-12 rounded-[16px] border border-[#4F4CB0] px-4 text-[15px] text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Mobile No"
-                    value={admissionForm.mobile}
-                    onChange={(event) =>
-                      handleAdmissionFormChange("mobile", event.target.value)
-                    }
-                    className="h-12 rounded-[16px] border border-[#4F4CB0] px-4 text-[15px] text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                  />
+                <div className="grid min-h-[54px] grid-cols-[124px_minmax(0,1fr)] overflow-hidden rounded-[14px] border border-[#b9bd9e] bg-white/82 shadow-[0_10px_20px_rgba(61,53,37,0.07)] transition-colors focus-within:border-[#657c48]">
+                  <div className="flex items-center gap-2.5 border-r border-[#d8d5bc] bg-[#f7f5ec] px-4">
+                    <span className="grid h-4 w-7 overflow-hidden rounded-[3px] border border-[#d9d2b4]">
+                      <span className="bg-[#f08a22]" />
+                      <span className="bg-white" />
+                      <span className="bg-[#278c42]" />
+                    </span>
+                    <input
+                      type="text"
+                      value={admissionForm.countryCode}
+                      readOnly
+                      aria-label="Country code"
+                      className="min-w-0 flex-1 bg-transparent text-[15px] font-semibold text-[#1d2e25] outline-none"
+                    />
+                    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 text-[#14251b]">
+                      <path d="m5 7.5 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                  <div className="flex min-w-0 items-center">
+                    <input
+                      type="tel"
+                      placeholder="Enter mobile number"
+                      value={admissionForm.mobile}
+                      onChange={(event) =>
+                        handleAdmissionFormChange("mobile", event.target.value)
+                      }
+                      className="min-w-0 flex-1 bg-transparent px-4 text-[15px] font-medium text-[#1d2e25] outline-none placeholder:text-[#7e8585]"
+                    />
+                    <span className="pr-4 text-[#3f6935]">
+                      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+                        <path d="M7.3 4.8 9 4.2a1.8 1.8 0 0 1 2.1.9l1 2a1.8 1.8 0 0 1-.4 2.1l-1 1a12 12 0 0 0 4.1 4.1l1-1a1.8 1.8 0 0 1 2.1-.4l2 1a1.8 1.8 0 0 1 .9 2.1l-.6 1.7a2.7 2.7 0 0 1-2.9 1.8A15.4 15.4 0 0 1 4.5 6.7a2.7 2.7 0 0 1 1.8-2.9Z" fill="currentColor" />
+                      </svg>
+                    </span>
+                  </div>
                 </div>
               </div>
 
               <label className="block">
-                <span className="mb-2 block text-[15px] font-medium text-[#9FC164]">
-                  Email ID
+                <span className="mb-2 block text-[15px] font-bold text-[#262c2d]">
+                  Email ID<span className="text-[#a65b18]">*</span>
                 </span>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={admissionForm.email}
-                  onChange={(event) =>
-                    handleAdmissionFormChange("email", event.target.value)
-                  }
-                  className="h-12 w-full rounded-[16px] border border-[#4F4CB0] px-4 text-[15px] text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                />
+                <div className="flex min-h-[54px] overflow-hidden rounded-[14px] border border-[#b9bd9e] bg-white/82 shadow-[0_10px_20px_rgba(61,53,37,0.07)] transition-colors focus-within:border-[#657c48]">
+                  <span className="flex w-[58px] shrink-0 items-center justify-center rounded-r-[14px] bg-[#f2f1e6] text-[#3f6935]">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+                      <path d="M4 7.5h16v10H4v-10Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
+                      <path d="m5 8 7 5.5L19 8" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <input
+                    type="email"
+                    placeholder="Enter email address"
+                    value={admissionForm.email}
+                    onChange={(event) =>
+                      handleAdmissionFormChange("email", event.target.value)
+                    }
+                    className="min-w-0 flex-1 bg-transparent px-4 text-[15px] font-medium text-[#1d2e25] outline-none placeholder:text-[#7e8585]"
+                  />
+                </div>
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-[15px] font-medium text-[#9FC164]">
-                  Academic Year*
+                <span className="mb-2 block text-[15px] font-bold text-[#262c2d]">
+                  Academic Year<span className="text-[#a65b18]">*</span>
                 </span>
-                <select
-                  value={admissionForm.academicYear}
-                  onChange={(event) =>
-                    handleAdmissionFormChange("academicYear", event.target.value)
-                  }
-                  className="h-12 w-full rounded-[16px] border border-[#4F4CB0] bg-[#E9EFF9] px-4 text-[15px] font-medium text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                >
-                  {academicYearOptions.map((year) => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex min-h-[54px] overflow-hidden rounded-[14px] border border-[#b9bd9e] bg-white/82 shadow-[0_10px_20px_rgba(61,53,37,0.07)] transition-colors focus-within:border-[#657c48]">
+                  <span className="flex w-[58px] shrink-0 items-center justify-center rounded-r-[14px] bg-[#f2f1e6] text-[#3f6935]">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+                      <path d="M6 5h12a2 2 0 0 1 2 2v12H4V7a2 2 0 0 1 2-2Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
+                      <path d="M8 3v4M16 3v4M4 10h16M8 14h.01M12 14h.01M16 14h.01" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                  <select
+                    value={admissionForm.academicYear}
+                    onChange={(event) =>
+                      handleAdmissionFormChange("academicYear", event.target.value)
+                    }
+                    className="min-w-0 flex-1 appearance-none bg-transparent px-4 text-[15px] font-semibold text-[#1d2e25] outline-none"
+                  >
+                    {academicYearOptions.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="flex w-10 items-center justify-center text-[#14251b]">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4">
+                      <path d="m5 7.5 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </div>
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-[15px] font-medium text-[#9FC164]">
-                  City*
+                <span className="mb-2 block text-[15px] font-bold text-[#262c2d]">
+                  City<span className="text-[#a65b18]">*</span>
                 </span>
-                <select
-                  value={admissionForm.city}
-                  onChange={(event) => {
-                    const nextCity = event.target.value;
-                    const nextBranches = admissionBranchesByCity[nextCity] ?? [];
+                <div className="flex min-h-[54px] overflow-hidden rounded-[14px] border border-[#b9bd9e] bg-white/82 shadow-[0_10px_20px_rgba(61,53,37,0.07)] transition-colors focus-within:border-[#657c48]">
+                  <span className="flex w-[58px] shrink-0 items-center justify-center rounded-r-[14px] bg-[#f2f1e6] text-[#3f6935]">
+                    <BranchNetworkIcon icon="pin" className="h-5 w-5" />
+                  </span>
+                  <select
+                    value={admissionForm.city}
+                    onChange={(event) => {
+                      const nextCity = event.target.value;
+                      const nextBranches = admissionBranchesByCity[nextCity] ?? [];
 
-                    setAdmissionForm((prev) => ({
-                      ...prev,
-                      city: nextCity,
-                      branchName: nextBranches[0] ?? "",
-                    }));
-                  }}
-                  className="h-12 w-full rounded-[16px] border border-[#4F4CB0] bg-[#E9EFF9] px-4 text-[15px] font-medium text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                >
-                  {featuredCities.map((city) => (
-                    <option key={city.name} value={city.name}>
-                      {city.name}
-                    </option>
-                  ))}
-                </select>
+                      setAdmissionForm((prev) => ({
+                        ...prev,
+                        city: nextCity,
+                        branchName: nextBranches[0] ?? "",
+                      }));
+                    }}
+                    className="min-w-0 flex-1 appearance-none bg-transparent px-4 text-[15px] font-semibold text-[#1d2e25] outline-none"
+                  >
+                    {featuredCities.map((city) => (
+                      <option key={city.name} value={city.name}>
+                        {city.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="flex w-10 items-center justify-center text-[#14251b]">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4">
+                      <path d="m5 7.5 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </div>
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-[15px] font-medium text-[#9FC164]">
-                  Branch Name*
+                <span className="mb-2 block text-[15px] font-bold text-[#262c2d]">
+                  Branch Name<span className="text-[#a65b18]">*</span>
                 </span>
-                <select
-                  value={admissionForm.branchName}
-                  onChange={(event) =>
-                    handleAdmissionFormChange("branchName", event.target.value)
-                  }
-                  className="h-12 w-full rounded-[16px] border border-[#4F4CB0] bg-[#E9EFF9] px-4 text-[15px] font-medium text-[#173B6C] outline-none transition-colors focus:border-[#4F4CB0]"
-                >
-                  {selectedCityBranches.map((branch) => (
-                    <option key={branch} value={branch}>
-                      {branch}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex min-h-[54px] overflow-hidden rounded-[14px] border border-[#b9bd9e] bg-white/82 shadow-[0_10px_20px_rgba(61,53,37,0.07)] transition-colors focus-within:border-[#657c48]">
+                  <span className="flex w-[58px] shrink-0 items-center justify-center rounded-r-[14px] bg-[#f2f1e6] text-[#3f6935]">
+                    <BranchNetworkIcon icon="building" className="h-5 w-5" />
+                  </span>
+                  <select
+                    value={admissionForm.branchName}
+                    onChange={(event) =>
+                      handleAdmissionFormChange("branchName", event.target.value)
+                    }
+                    className="min-w-0 flex-1 appearance-none bg-transparent px-4 text-[15px] font-semibold text-[#1d2e25] outline-none"
+                  >
+                    {selectedCityBranches.map((branch) => (
+                      <option key={branch} value={branch}>
+                        {branch}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="flex w-10 items-center justify-center text-[#14251b]">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4">
+                      <path d="m5 7.5 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </div>
               </label>
 
-              <div className="sm:col-span-2 flex justify-end pt-2">
+              <div className="flex justify-end pt-2 sm:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex min-h-[54px] min-w-[220px] items-center justify-center rounded-[14px] bg-[#4F4CB0] px-8 text-[18px] font-bold text-[#E9EFF9] transition-colors duration-300 hover:bg-[#9FC164]"
+                  className="inline-flex min-h-[60px] w-full max-w-[360px] items-center justify-between rounded-full border border-[#22351f] bg-[#24462b] px-4 text-[19px] font-extrabold text-white shadow-[0_14px_28px_rgba(36,70,43,0.22)] transition-colors duration-300 hover:bg-[#315d39]"
                 >
-                  Submit
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-[#e6ecc5] text-[#29472c]">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
+                      <path d="m4 12 16-7-7 16-2.2-7.8L4 12Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                      <path d="m10.8 13.2 4.4-4.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                  <span>Submit Enquiry</span>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6">
+                    <path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </button>
               </div>
+
+              <p className="flex items-center justify-center gap-2.5 text-center text-[14px] font-medium text-[#35403b] sm:col-span-2">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 text-[#587e3e]" fill="currentColor">
+                  <path d="M17 9V7A5 5 0 0 0 7 7v2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1Zm-8 0V7a3 3 0 0 1 6 0v2H9Z" />
+                </svg>
+                Your information is safe and secure with us.
+              </p>
             </form>
           </div>
         </div>
@@ -2860,115 +2943,74 @@ export default function Home() {
 
       <section
         ref={studentStoriesSectionRef}
-        className="relative isolate bg-[#ffffff] px-4 py-14 text-[#101A5D] sm:px-6 sm:py-18 lg:h-[var(--student-stories-scroll-height,220vh)] lg:px-8 lg:py-0"
+        className="relative isolate bg-[radial-gradient(circle_at_38%_8%,#fffaf2_0%,#fffdf9_46%,#f5ebdc_100%)] px-4 py-12 text-[#22301f] sm:px-6 sm:py-14 lg:h-[var(--student-stories-scroll-height,220vh)] lg:px-8 lg:py-0"
       >
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-dots absolute right-[12%] top-7 hidden h-[118px] w-[136px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(0deg)",
-              "--decor-x": "18px",
-              "--decor-y": "-18px",
-              "--decor-opacity": "0.5",
-            } as CSSProperties
-          }
+          className="absolute right-0 top-10 hidden h-[315px] w-[220px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.17] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-ribbon absolute -right-[130px] top-[92px] hidden h-[86px] w-[350px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(14deg)",
-              "--decor-start-rotate": "0deg",
-              "--decor-x": "26px",
-              "--decor-y": "-18px",
-              "--decor-opacity": "0.72",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-arc absolute -right-[38px] -top-[86px] hidden h-[214px] w-[310px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-22deg)",
-              "--decor-start-rotate": "-8deg",
-              "--decor-x": "20px",
-              "--decor-y": "-24px",
-              "--decor-opacity": "0.78",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-leaf absolute -left-[112px] bottom-[-112px] hidden h-[270px] w-[210px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-26deg)",
-              "--decor-start-rotate": "-10deg",
-              "--decor-x": "-28px",
-              "--decor-y": "34px",
-              "--decor-opacity": "0.74",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-diamond absolute left-[44px] bottom-[38px] hidden h-[72px] w-[72px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(45deg)",
-              "--decor-start-rotate": "20deg",
-              "--decor-x": "-18px",
-              "--decor-y": "22px",
-              "--decor-opacity": "0.55",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-8 right-8 hidden h-[108px] w-[128px] opacity-52 lg:block"
+          className="absolute left-0 top-[240px] hidden h-[120px] w-[80px] opacity-[0.18] lg:block"
           style={{
             backgroundImage:
-              "radial-gradient(circle, rgba(107,147,214,0.38) 2.2px, transparent 2.8px)",
+              "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.2px, transparent 3px)",
+            backgroundSize: "18px 18px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-[-96px] left-0 hidden h-[190px] w-[420px] rounded-tr-[220px] bg-[#e3d7bf]/64 lg:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-[-110px] right-0 hidden h-[180px] w-[430px] rounded-tl-[240px] bg-[#d8d0ac]/48 lg:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-[132px] right-8 hidden h-[118px] w-[120px] opacity-[0.2] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.2px, transparent 3px)",
             backgroundSize: "18px 18px",
           }}
         />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1510px] lg:sticky lg:top-[88px] lg:flex lg:min-h-[calc(100vh-88px)] lg:flex-col lg:justify-center lg:py-10">
-          <div className="max-w-[900px]">
+        <div className="relative z-10 mx-auto w-full max-w-[1380px] lg:sticky lg:top-[88px] lg:flex lg:min-h-[calc(100vh-88px)] lg:flex-col lg:justify-center lg:py-8">
+          <div className="max-w-[780px]">
             <p
               data-section-reveal
-              className="section-reveal-up inline-flex items-center gap-3 text-[12px] font-extrabold uppercase tracking-[0.18em] text-[#4F4CB0] sm:text-[13px]"
+              className="section-reveal-up inline-flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#7B4A23] sm:text-[12px]"
             >
               Students Speak
-              <span className="h-px w-9 bg-[#4F4CB0]" />
+              <span className="h-px w-9 bg-[#7B4A23]" />
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
-                className="h-5 w-5 fill-[#4F4CB0]"
+                className="h-4 w-4 fill-[#7B4A23]"
               >
                 <path d="m12 1.8 2.8 6 6.5.8-4.8 4.5 1.3 6.4-5.8-3.2-5.8 3.2 1.3-6.4-4.8-4.5 6.5-.8L12 1.8Z" />
               </svg>
-              <span className="h-px w-16 bg-[#4F4CB0]" />
+              <span className="h-px w-16 bg-[#7B4A23]" />
             </p>
             <h2
               data-wave-reveal
-              style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-              className="wave-reveal-heading mt-4 text-[34px] font-extrabold leading-[1.04] tracking-[0] text-[#101A5D] sm:text-[46px] lg:text-[57px]"
+              style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+              className="wave-reveal-heading mt-3 text-[34px] font-normal leading-[1.05] tracking-[0] text-[#1f2d1e] sm:text-[48px] lg:text-[58px]"
             >
               <span>Pioneering</span>{" "}
-              <span className="font-medium text-[#4F4CB0]">Success Stories</span>
+              <span className="text-[#8F4F26]">Success Stories</span>
             </h2>
+            <div className="mt-4 flex items-center gap-3 text-[#69763f]">
+              <span className="h-px w-11 bg-current" />
+              <svg aria-hidden="true" viewBox="0 0 20 10" className="h-3 w-4 fill-current">
+                <path d="M1 8C6 1 13 1 19 2c-4 4-10 7-18 6Z" />
+              </svg>
+            </div>
             <p
               data-section-reveal
-              className="section-reveal-up mt-4 max-w-[720px] text-[15px] font-medium leading-7 text-[#7280A3] sm:text-[16px] sm:leading-8"
+              className="section-reveal-up mt-4 max-w-[700px] text-[14px] font-medium leading-6 text-[#565652] sm:text-[16px] sm:leading-7"
               style={{ animationDelay: "120ms" }}
             >
               Inspiring journeys from students who turned curiosity,
@@ -2977,102 +3019,63 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative mt-8 overflow-hidden lg:mt-9">
-            <button
-              type="button"
-              onClick={() => cycleStudentStories(-1)}
-              aria-label="Previous student story"
-              className="absolute left-0 top-1/2 z-20 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#4F4CB0]/28 bg-white text-[#4F4CB0] shadow-[0_16px_34px_rgba(79,76,176,0.16)] transition-all hover:-translate-x-[55%] hover:border-[#4F4CB0]/55 xl:inline-flex"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="h-5 w-5"
-              >
-                <path
-                  d="M14.5 6 8.5 12l6 6"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => cycleStudentStories(1)}
-              aria-label="Next student story"
-              className="absolute right-0 top-1/2 z-20 hidden h-12 w-12 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#4F4CB0]/28 bg-white text-[#4F4CB0] shadow-[0_16px_34px_rgba(79,76,176,0.16)] transition-all hover:translate-x-[55%] hover:border-[#4F4CB0]/55 xl:inline-flex"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="h-5 w-5"
-              >
-                <path
-                  d="m9.5 6 6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
+          <div className="relative mt-6 overflow-hidden lg:mt-7">
             <div
               ref={storyCarouselRef}
-              className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth will-change-transform [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-visible lg:scroll-auto xl:gap-7"
+              className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth will-change-transform [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:overflow-visible lg:scroll-auto xl:gap-5"
             >
               {studentStories.map((story, index) => (
                 <article
                   key={`${story.name}-${index}`}
-                  className="group relative min-w-full shrink-0 snap-start overflow-hidden rounded-[18px] bg-white shadow-[0_28px_70px_rgba(107,147,214,0.16)] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 xl:min-w-[calc((100%_-_28px)/2)]"
+                  className="group relative min-w-full shrink-0 snap-start overflow-hidden rounded-[16px] bg-[#fffdf8] shadow-[0_22px_54px_rgba(88,68,42,0.13)] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 lg:min-w-[calc((100%_-_40px)/3)] xl:min-w-[calc((100%_-_40px)/3)]"
                 >
                   <div className="relative w-full">
-                    <div className="relative h-[230px] w-full overflow-hidden sm:h-[260px] lg:h-[285px]">
+                    <div className="relative h-[200px] w-full overflow-hidden sm:h-[220px] lg:h-[220px]">
                       <Image
                         src={story.image}
                         alt={story.name}
                         fill
-                        sizes="(max-width: 1279px) 100vw, 48vw"
+                        sizes="(max-width: 1023px) 100vw, 33vw"
                         className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                       />
-                      <div className="absolute left-0 top-0 flex h-[58px] w-[68px] items-center justify-center rounded-br-[20px] bg-[#4F4CB0] text-white shadow-[0_16px_30px_rgba(79,76,176,0.18)]">
+                      <div className="absolute left-0 top-0 flex h-[58px] w-[64px] items-center justify-center rounded-br-[20px] bg-[#8F4F26] text-white shadow-[0_14px_26px_rgba(112,72,36,0.2)]">
                         <StudentStoryBadgeIcon index={index} />
                       </div>
                     </div>
 
-                    <div className="relative bg-white px-5 pb-6 pt-6 text-[#101A5D] sm:px-8">
+                    <div className="relative bg-[#fffdf8] px-5 pb-5 pt-5 text-[#22301f] sm:px-6">
                       <div
                         aria-hidden="true"
-                        className="absolute right-8 top-4 h-[86px] w-[110px] opacity-24"
+                        className="absolute right-6 top-4 h-[70px] w-[88px] opacity-[0.24]"
                         style={{
                           backgroundImage:
-                            "radial-gradient(circle, rgba(159,193,100,0.45) 1.6px, transparent 2.2px)",
+                            "radial-gradient(circle, rgba(139,101,52,0.32) 1.6px, transparent 2.2px)",
                           backgroundSize: "12px 12px",
                         }}
                       />
-                      <div className="relative z-10 grid min-h-[118px] grid-cols-[74px_minmax(0,1fr)_56px] items-center gap-4">
-                        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#9FC164]/18 text-[#4F4CB0] shadow-[0_16px_32px_rgba(79,76,176,0.14)]">
+                      <div className="relative z-10 grid min-h-[98px] grid-cols-[58px_minmax(0,1fr)_46px] items-center gap-3">
+                        <span className="flex h-13 w-13 items-center justify-center rounded-full bg-[#dfd9b8] text-[#586238] shadow-[0_14px_28px_rgba(88,68,42,0.12)]">
                           <StudentStoryBadgeIcon index={index + 1} />
                         </span>
 
                         <div>
                           <h3
-                            style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-                            className="max-w-[430px] text-[22px] font-extrabold leading-[1.18] sm:text-[26px]"
+                            style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+                            className="max-w-[360px] text-[20px] font-normal leading-[1.18] sm:text-[25px]"
                           >
                             {story.quoteTitle}
                           </h3>
-                          <span className="mt-4 block h-px w-9 bg-[#4F4CB0]" />
-                          <p className="mt-4 text-[12px] font-bold uppercase tracking-[0.13em] text-[#7280A3] sm:text-[13px]">
-                            <span className="font-extrabold text-[#4F4CB0]">
+                          <div className="mt-3 flex items-center gap-2 text-[#69763f]">
+                            <span className="h-px w-8 bg-[#8F4F26]" />
+                            <svg aria-hidden="true" viewBox="0 0 20 10" className="h-3 w-4 fill-current">
+                              <path d="M1 8C6 1 13 1 19 2c-4 4-10 7-18 6Z" />
+                            </svg>
+                          </div>
+                          <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.12em] text-[#6c655b] sm:text-[11px]">
+                            <span className="font-extrabold text-[#7B4A23]">
                               {story.name}
                             </span>
-                            <span className="mx-3 text-[#7280A3]/70">|</span>
+                            <span className="mx-3 text-[#8F4F26]/60">|</span>
                             {story.role}
                           </p>
                         </div>
@@ -3091,10 +3094,10 @@ export default function Home() {
                             )
                           }
                           aria-label={`View ${story.name} story`}
-                          className={`flex h-12 w-12 items-center justify-center rounded-full border transition-all sm:h-14 sm:w-14 ${
+                          className={`flex h-10 w-10 items-center justify-center rounded-full border transition-all sm:h-12 sm:w-12 ${
                             index === activeStoryIndex
-                              ? "border-[#4F4CB0] bg-[#4F4CB0] text-white"
-                              : "border-[#4F4CB0] bg-white text-[#4F4CB0] hover:bg-[#4F4CB0] hover:text-white"
+                              ? "border-[#8F4F26] bg-[#8F4F26] text-white"
+                              : "border-[#8F4F26] bg-[#fffdf8] text-[#8F4F26] hover:bg-[#8F4F26] hover:text-white"
                           }`}
                         >
                           <svg
@@ -3128,10 +3131,10 @@ export default function Home() {
                   type="button"
                   onClick={() => setActiveStoryIndex(index)}
                   aria-label={`Go to student stories ${index + 1}`}
-                  className={`h-2 rounded-full transition-all ${
+                  className={`h-3 rounded-full transition-all ${
                     index === activeStoryIndex
-                      ? "w-5 bg-[#4F4CB0]"
-                      : "w-2 bg-[#9FC164]/24 hover:bg-[#4F4CB0]"
+                      ? "w-3 bg-[#8F4F26]"
+                      : "w-3 bg-[#e4d1ad] hover:bg-[#8F4F26]"
                   }`}
                 />
               ))}
@@ -3139,114 +3142,83 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#a1ff0054_100%)] px-4 pb-18 pt-12 text-[#101A5D] sm:px-6 sm:pb-24 sm:pt-16 lg:px-8 lg:pb-28 lg:pt-18">
+      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_6%,#fbfff3_0%,#fffffb_48%,#eef6d9_100%)] px-4 pb-14 pt-10 text-[#22301f] sm:px-6 sm:pb-18 sm:pt-12 lg:px-8 lg:pb-20 lg:pt-14">
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-dots absolute left-6 top-[86px] hidden h-[118px] w-[150px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(0deg)",
-              "--decor-x": "-18px",
-              "--decor-y": "-14px",
-              "--decor-opacity": "0.58",
-            } as CSSProperties
-          }
+          className="absolute right-[-42px] top-0 hidden h-[240px] w-[230px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.18] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-diamond absolute -right-[64px] -top-[64px] hidden h-[220px] w-[220px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(45deg)",
-              "--decor-start-rotate": "25deg",
-              "--decor-x": "22px",
-              "--decor-y": "-24px",
-              "--decor-opacity": "0.55",
-            } as CSSProperties
-          }
-        />
+          className="absolute left-0 top-[142px] hidden h-[180px] w-full text-[#8fa55b]/18 lg:block"
+        >
+          <svg viewBox="0 0 1440 180" preserveAspectRatio="none" className="h-full w-full">
+            <path d="M-40 14C180 120 390 142 650 88C908 34 1112 74 1480 8" fill="none" stroke="currentColor" strokeWidth="2.5" />
+            <path d="M-20 54C202 158 408 174 664 122C918 72 1132 104 1480 42" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          </svg>
+        </div>
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-ring absolute right-[44px] top-[92px] hidden h-[154px] w-[238px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-18deg)",
-              "--decor-start-rotate": "-4deg",
-              "--decor-x": "20px",
-              "--decor-y": "-16px",
-              "--decor-opacity": "0.72",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-slab absolute -left-[112px] bottom-[-92px] hidden h-[210px] w-[294px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-18deg)",
-              "--decor-start-rotate": "-32deg",
-              "--decor-x": "-22px",
-              "--decor-y": "32px",
-              "--decor-opacity": "0.7",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-arc absolute -left-[46px] bottom-[8px] hidden h-[188px] w-[160px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(28deg)",
-              "--decor-start-rotate": "8deg",
-              "--decor-x": "-16px",
-              "--decor-y": "24px",
-              "--decor-opacity": "0.82",
-            } as CSSProperties
-          }
-        />
-        <div
-          aria-hidden="true"
-          className="absolute right-7 top-[43%] hidden h-[126px] w-[132px] opacity-50 lg:block"
+          className="absolute right-7 top-[34%] hidden h-[126px] w-[132px] opacity-[0.24] lg:block"
           style={{
             backgroundImage:
-              "radial-gradient(circle, rgba(159,193,100,0.35) 2.3px, transparent 2.9px)",
+              "radial-gradient(circle, rgba(114, 132, 55, 0.44) 2.3px, transparent 2.9px)",
+            backgroundSize: "20px 20px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-[92px] right-0 hidden h-[230px] w-[480px] rounded-tl-[260px] bg-[#dbe9b8]/60 lg:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-0 hidden h-[126px] w-[150px] opacity-[0.2] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(114, 132, 55, 0.44) 2.3px, transparent 2.9px)",
             backgroundSize: "20px 20px",
           }}
         />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1510px]">
+        <div className="relative z-10 mx-auto w-full max-w-[1280px]">
           <div
             data-section-reveal
             className="section-reveal-up mx-auto max-w-[900px] text-center"
           >
-            <p className="inline-flex items-center gap-4 text-[12px] font-extrabold uppercase tracking-[0.2em] text-[#4F4CB0] sm:text-[13px]">
-              <span className="h-px w-10 bg-[#4F4CB0]" />
-              Campus
-              <span className="inline-flex text-[#4F4CB0]">
-                <CampusMomentIcon icon="spark" />
-              </span>
-              Moments
-              <span className="h-px w-10 bg-[#4F4CB0]" />
-            </p>
+            <div className="mx-auto flex w-[150px] items-center justify-center gap-4 text-[#556438]">
+              <span className="h-px flex-1 bg-current" />
+              <svg aria-hidden="true" viewBox="0 0 28 28" className="h-6 w-6">
+                <path d="M14 25V7" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2.2" />
+                <path d="M14 14C9 13.4 6.5 10 6.5 5.8c5.1.8 7.5 4.1 7.5 8.2Z" fill="currentColor" />
+                <path d="M14 19.5c5.6-.7 8.6-4.1 8.6-9-5.6.8-8.6 4.1-8.6 9Z" fill="currentColor" opacity="0.9" />
+                <path d="M14 24c-4.4-.5-7.1-3.1-7.8-7.1 4.6.4 7.1 3.1 7.8 7.1Z" fill="currentColor" opacity="0.9" />
+              </svg>
+              <span className="h-px flex-1 bg-current" />
+            </div>
             <h2
               data-wave-reveal
-              style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-              className="legacy-heading-wave wave-reveal-heading mt-5 text-[34px] font-extrabold leading-[1.08] tracking-[0] text-[#101A5D] sm:text-[48px] lg:text-[57px]"
+              style={{
+                fontFamily: "var(--font-poppins), Poppins, sans-serif",
+                overflow: "visible",
+              }}
+              className="legacy-heading-wave wave-reveal-heading mt-4 text-[28px] font-extrabold leading-[1.08] tracking-[0] text-[#1f2d1e] sm:text-[40px] lg:text-[50px]"
             >
-              <span className="text-[#4F4CB0]">A Glimpse Into{" "}</span>
-              <span className="font-extrabold text-[#101A5D]" style={{margin:"0 0 0 7px"}}>
-                Campus{" "}
-                <span className="relative inline-block">
-                  Life
+              <span>A Glimpse Into{" "}</span>
+              <span className="overflow-visible pr-4 font-extrabold">
+                <span
+                  className="relative inline-block overflow-visible pb-2 pr-2 text-[#556438]"
+                  style={{
+                    fontFamily: "var(--font-caveat), Caveat, cursive",
+                    fontSize: "1.08em",
+                    fontWeight: 700,
+                    lineHeight: 1,
+                  }}
+                >
+                  Campus Life
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 120 18"
-                    className="legacy-shape-underline absolute -bottom-3 left-1/2 h-5 w-[120%] -translate-x-1/2 text-[#D99A00]"
+                    className="legacy-shape-underline absolute -bottom-2 left-1/2 h-5 w-[104%] -translate-x-1/2 text-[#D9A000]"
                     preserveAspectRatio="none"
                   >
                     <path
@@ -3269,7 +3241,7 @@ export default function Home() {
             </h2>
             <p
               data-section-reveal
-              className="campus-description-reveal mx-auto mt-5 max-w-[680px] text-[15px] font-medium leading-7 text-[#7280A3] sm:text-[16px]"
+              className="campus-description-reveal mx-auto mt-4 max-w-[640px] text-[14px] font-medium leading-6 text-[#565c65] sm:text-[16px] sm:leading-7"
               style={{ animationDelay: "140ms" }}
             >
               Experience a vibrant, safe and inspiring environment shaped by
@@ -3279,17 +3251,17 @@ export default function Home() {
 
           <div
             ref={campusGalleryRef}
-            className="mx-auto mt-10 grid max-w-[1280px] gap-5 md:grid-cols-2 lg:grid-cols-3"
+            className="mx-auto mt-8 grid max-w-[1200px] gap-5 md:grid-cols-2 lg:grid-cols-3"
           >
             {campusGalleryItems.map((item, index) => (
               <article
                 key={item.title}
-                className={`campus-card-reveal group relative overflow-hidden rounded-[18px] border border-[#9FC164]/10 bg-white shadow-[0_24px_60px_rgba(107,147,214,0.14)] transition-transform duration-500 hover:-translate-y-1 ${
+                className={`campus-card-reveal group relative overflow-hidden rounded-[16px] border border-[#dfe8ca] bg-[#fffdf9] shadow-[0_20px_46px_rgba(86,90,54,0.12)] transition-transform duration-500 hover:-translate-y-1 ${
                   campusGalleryVisible ? "is-visible" : ""
                 }`}
                 style={{ animationDelay: `${index * 90}ms` }}
               >
-                <div className="relative aspect-[16/7.2] w-full overflow-hidden">
+                <div className="relative aspect-[16/7] w-full overflow-hidden">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -3299,42 +3271,42 @@ export default function Home() {
                   />
                 </div>
                 <div
-                  className={`section-reveal-up relative flex items-center justify-between gap-4 px-4 py-4 sm:px-5 ${
+                  className={`section-reveal-up relative flex items-center justify-between gap-4 px-5 py-4 sm:px-5 ${
                     campusGalleryVisible ? "is-visible" : ""
                   }`}
                   style={{ animationDelay: `${index * 90 + 120}ms` }}
                 >
                   <div
                     aria-hidden="true"
-                    className="absolute right-4 top-3 h-[70px] w-[90px] opacity-20"
+                    className="absolute right-4 top-3 h-[56px] w-[76px] opacity-[0.16]"
                     style={{
                       backgroundImage:
-                        "radial-gradient(circle, rgba(159,193,100,0.48) 1.5px, transparent 2.2px)",
+                        "radial-gradient(circle, rgba(114,132,55,0.48) 1.5px, transparent 2.2px)",
                       backgroundSize: "11px 11px",
                     }}
                   />
-                  <div className="relative z-10 flex min-w-0 items-center gap-4">
-                    <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#9FC164]/22 bg-[#9FC164]/12 text-[#4F4CB0] shadow-[0_12px_26px_rgba(79,76,176,0.12)]">
+                  <div className="relative z-10 flex min-w-0 items-center gap-3">
+                    <span className="inline-flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-[#e9f2d3] text-[#556438] shadow-[0_10px_20px_rgba(86,90,54,0.11)]">
                       <CampusMomentIcon icon={item.icon} />
                     </span>
                     <div className="min-w-0">
-                      <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-[#4F4CB0]">
+                      <p className="text-[9.5px] font-extrabold uppercase tracking-[0.2em] text-[#556438]">
                         {item.category}
                       </p>
                       <h3
                         style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-                        className="truncate text-[17px] font-extrabold text-[#101A5D] sm:text-[20px]"
+                        className="truncate text-[17px] font-extrabold text-[#22241f] sm:text-[19px]"
                       >
                         {item.title}
                       </h3>
                     </div>
                   </div>
-                  <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#4F4CB0]/38 bg-white text-[#4F4CB0] transition-all duration-300 group-hover:bg-[#4F4CB0] group-hover:text-white">
+                  <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#556438] bg-[#fffdf9] text-[#22241f] transition-all duration-300 group-hover:bg-[#556438] group-hover:text-white">
                     <svg
                       aria-hidden="true"
                       viewBox="0 0 24 24"
                       fill="none"
-                      className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5"
+                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
                     >
                       <path
                         d="M5 12h14m-6-6 6 6-6 6"
@@ -3350,10 +3322,10 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center">
+          <div className="mt-7 flex justify-center">
             <Link
               href="/"
-              className="inline-flex h-13 min-w-[260px] items-center justify-center gap-4 rounded-full border border-[#4F4CB0]/70 bg-white/50 px-8 text-[15px] font-extrabold !text-[#4F4CB0] shadow-[0_14px_34px_rgba(79,76,176,0.12)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
+              className="inline-flex h-12 min-w-[250px] items-center justify-center gap-4 rounded-full border border-[#556438] bg-[#fffdf9]/70 px-7 text-[15px] font-extrabold !text-[#556438] shadow-[0_12px_28px_rgba(86,90,54,0.11)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
             >
               Explore More Moments
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
@@ -3370,88 +3342,56 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#F9FBFF_0%,#E9EFF9_54%,#F8FBFF_100%)] px-3 py-12 text-[#173B6C] sm:px-5 sm:py-16 lg:px-6 lg:py-20">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_4%,rgba(107,147,214,0.22)_0%,rgba(107,147,214,0)_25%),radial-gradient(circle_at_85%_10%,rgba(216,197,150,0.24)_0%,rgba(216,197,150,0)_24%),linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(233,239,249,0.86)_100%)]" />
+      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_4%,#fffaf2_0%,#fffdf9_48%,#f3eadc_100%)] px-3 py-10 text-[#24301f] sm:px-5 sm:py-12 lg:px-6 lg:py-14">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_4%,rgba(227,215,191,0.5)_0%,rgba(227,215,191,0)_26%),radial-gradient(circle_at_88%_42%,rgba(226,218,196,0.5)_0%,rgba(226,218,196,0)_22%)]" />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-dots absolute left-3 top-8 hidden h-[150px] w-[170px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(0deg)",
-              "--decor-x": "-14px",
-              "--decor-y": "-14px",
-              "--decor-opacity": "0.72",
-            } as CSSProperties
-          }
+          className="absolute -left-4 top-8 hidden h-[280px] w-[220px] bg-contain bg-left-top bg-no-repeat opacity-[0.18] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-ribbon absolute -right-[120px] -top-10 hidden h-[112px] w-[420px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(14deg)",
-              "--decor-start-rotate": "2deg",
-              "--decor-x": "18px",
-              "--decor-y": "-18px",
-              "--decor-opacity": "0.76",
-            } as CSSProperties
-          }
+          className="absolute right-9 top-4 hidden h-[118px] w-[170px] opacity-[0.2] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(139, 101, 52, 0.56) 2.2px, transparent 3px)",
+            backgroundSize: "22px 22px",
+          }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-ring absolute -left-[120px] top-[92px] hidden h-[330px] w-[220px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-16deg)",
-              "--decor-start-rotate": "0deg",
-              "--decor-x": "-24px",
-              "--decor-y": "18px",
-              "--decor-opacity": "0.7",
-            } as CSSProperties
-          }
+          className="absolute -right-[76px] bottom-[56px] hidden h-[260px] w-[320px] rounded-l-full bg-[#e6dac2]/58 lg:block"
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-slab absolute -right-[96px] bottom-[64px] hidden h-[210px] w-[300px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-24deg)",
-              "--decor-start-rotate": "-6deg",
-              "--decor-x": "26px",
-              "--decor-y": "22px",
-              "--decor-opacity": "0.56",
-            } as CSSProperties
-          }
+          className="absolute right-0 bottom-[72px] hidden h-[210px] w-[180px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.14] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
         />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1510px]">
-          <div className="mx-auto max-w-[920px] text-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1360px]">
+          <div className="mx-auto max-w-[820px] text-center">
             <p
               data-section-reveal
-              className="section-reveal-up inline-flex items-center justify-center gap-3 text-[12px] font-extrabold uppercase tracking-[0.22em] text-[#D99A00] sm:text-[13px]"
+              className="section-reveal-up inline-flex items-center justify-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#8F4F26] sm:text-[12px]"
             >
-              <span className="h-px w-9 bg-[#D99A00]" />
-              <BranchNetworkIcon icon="pin" className="h-5 w-5" />
+              <span className="h-px w-9 bg-current" />
+              <BranchNetworkIcon icon="pin" className="h-4 w-4" />
               Our Network
-              <span className="h-px w-9 bg-[#D99A00]" />
+              <span className="h-px w-9 bg-current" />
             </p>
             <h2
               data-wave-reveal
-              style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-              className="legacy-heading-wave wave-reveal-heading mt-4 text-[34px] font-extrabold leading-[1.08] tracking-[0] text-[#101A5D] sm:text-[46px] lg:text-[57px]"
+              style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+              className="legacy-heading-wave wave-reveal-heading mt-3 text-[34px] font-normal leading-[1.04] tracking-[0] text-[#1f2d1e] sm:text-[50px] lg:text-[58px]"
             >
               <span>
                 Branch{" "}
-                <span className="relative inline-block text-[#D99A00]">
+                <span className="relative inline-block text-[#8F4F26]">
                   Network
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 150 18"
-                    className="legacy-shape-underline absolute -bottom-3 left-1/2 h-5 w-[104%] -translate-x-1/2 text-[#D99A00]"
+                    className="legacy-shape-underline absolute -bottom-3 left-1/2 h-5 w-[104%] -translate-x-1/2 text-[#8F4F26]"
                     fill="none"
                     preserveAspectRatio="none"
                   >
@@ -3474,7 +3414,7 @@ export default function Home() {
             </h2>
             <p
               data-section-reveal
-              className="section-reveal-up mx-auto mt-5 max-w-[740px] text-[15px] leading-7 text-[#173B6C]/78 sm:text-[16px] sm:leading-8"
+              className="section-reveal-up mx-auto mt-4 max-w-[660px] text-[14px] font-medium leading-6 text-[#3f4539] sm:text-[16px] sm:leading-7"
               style={{ animationDelay: "120ms" }}
             >
               Find Sri Chaitanya campuses by board, state, city, and branch.
@@ -3485,41 +3425,41 @@ export default function Home() {
           <div
             aria-hidden="true"
             data-section-reveal
-            className="section-reveal-right absolute right-[4%] top-8 hidden h-[92px] w-[116px] text-[#D99A00] drop-shadow-[0_16px_20px_rgba(23,59,108,0.16)] xl:block"
+            className="section-reveal-right absolute right-[5%] top-5 hidden h-[86px] w-[116px] text-[#586238] drop-shadow-[0_18px_20px_rgba(88,98,56,0.18)] xl:block"
             style={{ animationDelay: "180ms" }}
           >
             <svg viewBox="0 0 160 130" fill="none" className="h-full w-full">
-              <path d="M22 39 62 22l38 18 38-16v68l-38 16-38-18-40 17V39Z" fill="#E9EFF9" stroke="#6B93D6" strokeWidth="4" />
-              <path d="M62 22v68M100 40v68M34 54l16-7M74 47l14 6M112 50l13-5M34 74l18-8M74 67l14 5M112 70l13-5" stroke="#9FC164" strokeWidth="3" strokeLinecap="round" />
-              <path d="M112 7c15 0 26 11 26 25 0 22-26 47-26 47S86 54 86 32c0-14 11-25 26-25Z" fill="#D99A00" />
+              <path d="M22 39 62 22l38 18 38-16v68l-38 16-38-18-40 17V39Z" fill="#f2eadc" stroke="#e0d4bf" strokeWidth="4" />
+              <path d="M62 22v68M100 40v68M34 54l16-7M74 47l14 6M112 50l13-5M34 74l18-8M74 67l14 5M112 70l13-5" stroke="#b5c069" strokeWidth="3" strokeLinecap="round" />
+              <path d="M112 7c15 0 26 11 26 25 0 22-26 47-26 47S86 54 86 32c0-14 11-25 26-25Z" fill="#586238" />
               <circle cx="112" cy="32" r="9" fill="#fff" />
             </svg>
           </div>
 
           <div
             data-section-reveal
-            className="section-reveal-up mt-8 rounded-[22px] border border-white/80 bg-white/78 p-3 shadow-[0_22px_55px_rgba(23,59,108,0.13)] backdrop-blur-md"
+            className="section-reveal-up mt-6 rounded-[18px] border border-[#eadfca]/80 bg-[#fffdf8]/78 p-2.5 shadow-[0_18px_42px_rgba(86,68,42,0.11)] backdrop-blur-md"
             style={{ animationDelay: "160ms" }}
           >
-            <div className="grid gap-3 lg:grid-cols-[repeat(4,minmax(0,1fr))_210px]">
+            <div className="grid gap-2.5 lg:grid-cols-[repeat(4,minmax(0,1fr))_190px]">
               {branchFilterControls.map((control) => (
                 <label
                   key={control.label}
-                  className="relative flex min-h-[74px] items-center gap-4 rounded-[15px] border border-[#DCE7F8] bg-white px-4 shadow-[0_12px_26px_rgba(23,59,108,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#6B93D6]/60 hover:shadow-[0_18px_34px_rgba(23,59,108,0.12)]"
+                  className="relative flex min-h-[62px] items-center gap-3 rounded-[13px] border border-[#e4d8c5] bg-[#fffdf8] px-3 shadow-[0_10px_22px_rgba(86,68,42,0.07)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#8F4F26]/35 hover:shadow-[0_16px_30px_rgba(86,68,42,0.11)]"
                 >
                   <span
-                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] text-white shadow-[0_10px_20px_rgba(23,59,108,0.16)]"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] text-white shadow-[0_10px_20px_rgba(23,59,108,0.14)]"
                     style={{ backgroundColor: control.accent }}
                   >
-                    <BranchNetworkIcon icon={control.icon} className="h-6 w-6" />
+                    <BranchNetworkIcon icon={control.icon} className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[12px] font-semibold text-[#173B6C]/62">
+                    <span className="block text-[11px] font-semibold text-[#4a4a40]/70">
                       {control.label}
                     </span>
                     <select
                       defaultValue={control.value}
-                      className="mt-1 w-full appearance-none bg-transparent pr-7 text-[15px] font-extrabold text-[#173B6C] outline-none"
+                      className="mt-0.5 w-full appearance-none bg-transparent pr-7 text-[13px] font-extrabold text-[#1f241c] outline-none"
                     >
                       {control.options.map((option) => (
                         <option key={option} value={option}>
@@ -3528,7 +3468,7 @@ export default function Home() {
                       ))}
                     </select>
                   </span>
-                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#173B6C]">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#1f241c]">
                     <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </label>
@@ -3536,9 +3476,9 @@ export default function Home() {
 
               <button
                 type="button"
-                className="inline-flex min-h-[74px] items-center justify-center gap-3 whitespace-nowrap rounded-[15px] bg-[#003A8C] px-5 text-[15px] font-extrabold text-white shadow-[0_16px_30px_rgba(0,58,140,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#002D70]"
+                className="inline-flex min-h-[62px] items-center justify-center gap-3 whitespace-nowrap rounded-[13px] bg-[#586238] px-4 text-[13px] font-extrabold text-white shadow-[0_14px_26px_rgba(88,98,56,0.22)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#6a7544]"
               >
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
                   <path d="m21 21-4.2-4.2M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                 </svg>
                 Search Branches
@@ -3546,13 +3486,13 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 xl:grid-cols-[minmax(0,1fr)_500px]">
+          <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,1fr)_430px]">
             <article
               data-section-reveal
-              className="section-reveal-left overflow-hidden rounded-[24px] border-[10px] border-white bg-white shadow-[0_24px_55px_rgba(23,59,108,0.16)]"
+              className="section-reveal-left overflow-hidden rounded-[20px] border-[8px] border-[#fffdf8] bg-[#fffdf8] shadow-[0_20px_46px_rgba(86,68,42,0.14)]"
               style={{ animationDelay: "220ms" }}
             >
-              <div className="relative h-[360px] overflow-hidden rounded-[14px] sm:h-[450px] lg:h-[510px]">
+              <div className="relative h-[300px] overflow-hidden rounded-[12px] sm:h-[360px] lg:h-[420px]">
                 <iframe
                   title="Sri Chaitanya branches map demo"
                   src="https://www.google.com/maps?q=Hyderabad,+Telangana&z=11&output=embed"
@@ -3560,21 +3500,20 @@ export default function Home() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_44%_50%,rgba(217,154,0,0.12)_0%,rgba(217,154,0,0)_20%)]" />
-\
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_44%_50%,rgba(88,98,56,0.12)_0%,rgba(88,98,56,0)_20%)]" />
                 <button
                   type="button"
-                  className="absolute bottom-6 left-5 inline-flex h-11 items-center gap-2 rounded-[12px] bg-white px-4 text-[13px] font-extrabold text-[#003A8C] shadow-[0_12px_24px_rgba(23,59,108,0.16)]"
+                  className="absolute bottom-5 left-4 inline-flex h-10 items-center gap-2 rounded-[10px] bg-[#fffdf8] px-3 text-[12px] font-extrabold text-[#1f241c] shadow-[0_10px_20px_rgba(86,68,42,0.14)]"
                 >
                   <BranchNetworkIcon icon="pin" className="h-4 w-4" />
                   Locate Me
                 </button>
-                <div className="absolute bottom-5 right-5 overflow-hidden rounded-[12px] bg-white shadow-[0_12px_24px_rgba(23,59,108,0.16)]">
-                  <button type="button" aria-label="Zoom in" className="flex h-11 w-11 items-center justify-center text-[25px] font-semibold text-[#003A8C]">
+                <div className="absolute bottom-4 right-4 overflow-hidden rounded-[10px] bg-[#fffdf8] shadow-[0_10px_20px_rgba(86,68,42,0.14)]">
+                  <button type="button" aria-label="Zoom in" className="flex h-10 w-10 items-center justify-center text-[22px] font-semibold text-[#1f241c]">
                     +
                   </button>
-                  <span className="block h-px bg-[#E9EFF9]" />
-                  <button type="button" aria-label="Zoom out" className="flex h-11 w-11 items-center justify-center text-[25px] font-semibold text-[#003A8C]">
+                  <span className="block h-px bg-[#e4d8c5]" />
+                  <button type="button" aria-label="Zoom out" className="flex h-10 w-10 items-center justify-center text-[22px] font-semibold text-[#1f241c]">
                     -
                   </button>
                 </div>
@@ -3583,28 +3522,28 @@ export default function Home() {
 
             <aside
               data-section-reveal
-              className="section-reveal-right rounded-[24px] border border-white/85 bg-white/80 p-4 text-[#173B6C] shadow-[0_24px_55px_rgba(23,59,108,0.14)] backdrop-blur-md sm:p-5"
+              className="section-reveal-right rounded-[20px] border border-[#eadfca]/85 bg-[#fffdf8]/82 p-3 text-[#1f241c] shadow-[0_20px_46px_rgba(86,68,42,0.13)] backdrop-blur-md sm:p-4"
               style={{ animationDelay: "260ms" }}
             >
               <div
                 data-section-reveal
-                className="section-reveal-up grid grid-cols-[1fr_1fr_1.18fr] gap-2 rounded-[16px] bg-[#E9EFF9]/80 p-2"
+                className="section-reveal-up grid grid-cols-[1fr_1fr_1.18fr] gap-2 rounded-[14px] bg-[#f2eadc]/82 p-2"
                 style={{ animationDelay: "300ms" }}
               >
                 {branchNetworkTabs.map((tab, index) => (
                   <button
                     key={tab.label}
                     type="button"
-                    className={`inline-flex min-h-[58px] items-center justify-center gap-1.5 rounded-[12px] px-2 text-center text-[11px] font-extrabold leading-tight transition-all duration-300 ${
+                    className={`inline-flex min-h-[52px] items-center justify-center gap-2 rounded-[10px] px-2.5 text-center text-[11px] font-extrabold leading-tight transition-all duration-300 sm:text-[12px] ${
                       index === 0
-                        ? "bg-[#003A8C] text-white shadow-[0_12px_22px_rgba(0,58,140,0.24)]"
-                        : "bg-white/70 text-[#003A8C] hover:bg-white"
+                        ? "bg-[#586238] text-white shadow-[0_12px_22px_rgba(88,98,56,0.24)]"
+                        : "bg-[#fffdf8]/76 text-[#1f241c] hover:bg-white"
                     }`}
                   >
-                    <BranchNetworkIcon icon={tab.icon} className="h-5 w-5 shrink-0" />
+                    <BranchNetworkIcon icon={tab.icon} className="h-4 w-4 shrink-0" />
                     <span>
                       <span className="whitespace-nowrap">{tab.label}</span>
-                      <span className={`block text-[10px] font-bold ${index === 0 ? "text-white/78" : "text-[#173B6C]/55"}`}>
+                      <span className={`block text-[10px] font-bold ${index === 0 ? "text-white/78" : "text-[#1f241c]/55"}`}>
                         ({tab.count})
                       </span>
                     </span>
@@ -3614,36 +3553,36 @@ export default function Home() {
 
               <div
                 data-lenis-prevent
-                className="mt-4 max-h-[388px] space-y-3 overflow-y-auto pr-1"
+                className="mt-3 max-h-[332px] space-y-2.5 overflow-y-auto pr-1"
               >
                 {branchLocations.slice(0, 4).map((branch, index) => (
                   <article
                     key={branch.name}
                     data-section-reveal
-                    className="section-reveal-up group rounded-[16px] border border-[#DCE7F8] bg-white p-3 shadow-[0_12px_26px_rgba(23,59,108,0.07)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D99A00]/45 hover:shadow-[0_18px_34px_rgba(23,59,108,0.12)]"
+                    className="section-reveal-up group rounded-[14px] border border-[#e4d8c5] bg-[#fffdf8] p-3 shadow-[0_10px_22px_rgba(86,68,42,0.07)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#8F4F26]/45 hover:shadow-[0_16px_30px_rgba(86,68,42,0.11)]"
                     style={{ animationDelay: `${340 + index * 75}ms` }}
                   >
                     <div className="flex items-start gap-3 text-left">
-                      <div className="relative h-[72px] w-[82px] shrink-0 overflow-hidden rounded-[14px]">
+                      <div className="relative h-[64px] w-[74px] shrink-0 overflow-hidden rounded-[12px]">
                         <Image
                           src={branch.image}
                           alt={branch.name}
                           fill
-                          sizes="82px"
+                          sizes="74px"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-[15px] font-extrabold leading-snug text-[#173B6C]">
+                        <h3 className="text-[15px] font-extrabold leading-snug text-[#1f241c]">
                           {branch.name}
                         </h3>
-                        <p className="mt-1.5 flex max-w-[300px] gap-1.5 text-[11px] font-medium leading-5 text-[#173B6C]/70">
-                          <BranchNetworkIcon icon="pin" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#003A8C]" />
+                        <p className="mt-1.5 flex max-w-[280px] gap-1.5 text-[11px] font-medium leading-[1.45] text-[#4a4a40]/78">
+                          <BranchNetworkIcon icon="pin" className="mt-0.5 h-4 w-4 shrink-0 text-[#586238]" />
                           {branch.address}
                         </p>
-                        <p className="mt-1.5 text-[11px] font-extrabold leading-none text-[#D99A00]">
+                        <p className="mt-2 text-[11px] font-extrabold leading-none text-[#8F4F26]">
                           Rating {branch.rating}
-                          <span className="ml-1 font-semibold text-[#173B6C]/55">
+                          <span className="ml-1 font-semibold text-[#1f241c]/55">
                             ({branch.reviews} reviews)
                           </span>
                         </p>
@@ -3651,9 +3590,9 @@ export default function Home() {
                       <button
                         type="button"
                         aria-label={`View ${branch.name}`}
-                        className="flex h-10 w-10 shrink-0 self-center items-center justify-center rounded-full bg-[#E9EFF9] text-[#003A8C] transition-colors duration-300 group-hover:bg-[#003A8C] group-hover:text-white"
+                        className="flex h-9 w-9 shrink-0 self-center items-center justify-center rounded-full bg-[#f2eadc] text-[#1f241c] transition-colors duration-300 group-hover:bg-[#8F4F26] group-hover:text-white"
                       >
-                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4">
                           <path d="m9.5 6 6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </button>
@@ -3666,97 +3605,71 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative isolate overflow-hidden bg-[linear-gradient(135deg,#eaffc6_0%,#fff_100%)] px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
+      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_6%,#fbfff3_0%,#fffdf9_48%,#eef6d9_100%)] px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-dots absolute left-8 top-16 hidden h-[116px] w-[140px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(0deg)",
-              "--decor-x": "-16px",
-              "--decor-y": "-14px",
-              "--decor-opacity": "0.5",
-            } as CSSProperties
-          }
+          className="absolute -left-1 top-[72px] hidden h-[270px] w-[190px] bg-contain bg-left-top bg-no-repeat opacity-[0.2] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-leaf absolute -right-[104px] -top-[126px] hidden h-[286px] w-[236px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(20deg)",
-              "--decor-start-rotate": "4deg",
-              "--decor-x": "24px",
-              "--decor-y": "-28px",
-              "--decor-opacity": "0.62",
-            } as CSSProperties
-          }
+          className="absolute -right-[86px] -top-[108px] hidden h-[250px] w-[390px] rounded-bl-[220px] bg-[#dbe9b8]/58 lg:block"
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-arc absolute -right-[22px] -top-[58px] hidden h-[220px] w-[318px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(-14deg)",
-              "--decor-start-rotate": "-28deg",
-              "--decor-x": "20px",
-              "--decor-y": "-18px",
-              "--decor-opacity": "0.76",
-            } as CSSProperties
-          }
+          className="absolute right-7 top-[188px] hidden h-[165px] w-[126px] opacity-[0.22] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(114, 132, 55, 0.46) 2.2px, transparent 3px)",
+            backgroundSize: "20px 20px",
+          }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-diamond absolute -left-[68px] bottom-[-46px] hidden h-[150px] w-[150px] sm:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(45deg)",
-              "--decor-start-rotate": "20deg",
-              "--decor-x": "-20px",
-              "--decor-y": "24px",
-              "--decor-opacity": "0.55",
-            } as CSSProperties
-          }
+          className="absolute bottom-[108px] right-0 hidden h-[250px] w-[180px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.16] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
         />
         <div
           aria-hidden="true"
-          data-section-reveal
-          className="section-decor decor-dots absolute bottom-5 right-8 hidden h-[116px] w-[140px] lg:block"
-          style={
-            {
-              "--decor-final-transform": "translate3d(0,0,0) rotate(0deg)",
-              "--decor-x": "16px",
-              "--decor-y": "18px",
-              "--decor-opacity": "0.5",
-            } as CSSProperties
-          }
+          className="absolute left-0 bottom-[92px] hidden h-[165px] w-[76px] opacity-[0.22] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(114, 132, 55, 0.46) 2.2px, transparent 3px)",
+            backgroundSize: "20px 20px",
+          }}
         />
 
-        <div className="relative z-10 mx-auto w-full max-w-[1320px]">
-          <div className="mx-auto max-w-[980px] text-center">
-            <p className="inline-flex items-center justify-center gap-3 text-[12px] font-extrabold uppercase tracking-[0.24em] text-[#4F4CB0] sm:text-[13px]">
-              <span className="h-px w-8 bg-[#4F4CB0]" />
-              <span className="text-[#4F4CB0]">{"\u2605"}</span>
+        <div className="relative z-10 mx-auto w-full max-w-[1280px]">
+          <div className="mx-auto max-w-[820px] text-center">
+            <p className="inline-flex items-center justify-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-[#62703f] sm:text-[12px]">
+              <span className="h-px w-10 bg-current" />
+              <svg aria-hidden="true" viewBox="0 0 20 10" className="h-3 w-4 fill-current">
+                <path d="M1 8C6 1 13 1 19 2c-4 4-10 7-18 6Z" />
+              </svg>
               Stay Connected
-              <span className="text-[#4F4CB0]">{"\u2605"}</span>
-              <span className="h-px w-8 bg-[#4F4CB0]" />
+              <span className="h-px w-10 bg-current" />
             </p>
             <h2
               data-wave-reveal
-              style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-              className="wave-reveal-heading mt-4 text-[34px] font-extrabold leading-[1.08] tracking-[0] text-[#101A5D] sm:text-[46px] lg:text-[57px]"
+              style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+              className="wave-reveal-heading mt-3 text-[32px] font-normal leading-[1.08] tracking-[0] text-[#1f2d1e] sm:text-[46px] lg:text-[56px]"
             >
               <span>Latest </span>
-              <span className="text-[#4F4CB0]" style={{margin:"0 7px 0 7px"}}> Social Media </span>
+              <span className="text-[#8F4F26]" style={{ margin: "0 7px" }}>
+                Social Media
+              </span>
               <span>News</span>
             </h2>
+            <div className="mx-auto mt-4 flex w-[104px] items-center justify-center gap-3 text-[#62703f]">
+              <span className="h-px flex-1 bg-current" />
+              <svg aria-hidden="true" viewBox="0 0 20 10" className="h-3 w-4 fill-current">
+                <path d="M1 8C6 1 13 1 19 2c-4 4-10 7-18 6Z" />
+              </svg>
+              <span className="h-px flex-1 bg-current" />
+            </div>
             <p
               data-section-reveal
-              className="section-reveal-up mx-auto mt-5 max-w-[700px] text-[15px] font-medium leading-7 text-[#5F6B85] sm:text-[16px]"
+              className="section-reveal-up mx-auto mt-4 max-w-[700px] text-[14px] font-medium leading-6 text-[#565c65] sm:text-[16px] sm:leading-7"
             >
               Catch the newest highlights from our social channels, including
               student achievements, campus events, academic milestones, and
@@ -3764,22 +3677,20 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-[1120px] gap-6 lg:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-[1120px] gap-6 lg:grid-cols-3">
             {socialNewsItems.map((item, index) => (
               <article
                 key={`${item.platform}-${item.title}`}
                 data-section-reveal
-                className="section-reveal-up group relative overflow-hidden rounded-[14px] bg-white shadow-[0_24px_60px_rgba(107,147,214,0.13)] transition-transform duration-500 hover:-translate-y-1"
+                className="section-reveal-up group relative overflow-hidden rounded-[16px] bg-[#fffdf8] shadow-[0_22px_52px_rgba(86,90,54,0.12)] transition-transform duration-500 hover:-translate-y-1"
                 style={{ animationDelay: `${index * 110}ms` }}
               >
                 <span
-                  className={`absolute left-0 top-0 z-10 flex h-[62px] w-[70px] items-center justify-center rounded-br-[18px] text-white shadow-[0_16px_30px_rgba(16,26,93,0.14)] ${
-                    index === 1 ? "bg-[#4F4CB0]" : "bg-[#173B6C]"
-                  }`}
+                  className="absolute left-0 top-0 z-10 flex h-[62px] w-[64px] items-center justify-center rounded-br-[20px] bg-[#586238] text-white shadow-[0_14px_26px_rgba(88,98,56,0.18)]"
                 >
                   <SocialNewsIcon index={index} />
                 </span>
-                <div className="relative h-[188px] w-full overflow-hidden sm:h-[224px] lg:aspect-[16/9] lg:h-auto">
+                <div className="relative h-[180px] w-full overflow-hidden sm:h-[205px] lg:aspect-[16/8.2] lg:h-auto">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -3789,41 +3700,37 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="relative p-5 lg:p-6">
+                <div className="relative px-5 pb-6 pt-5 lg:px-6 lg:pb-7">
                   <div
                     aria-hidden="true"
-                    className={`absolute bottom-5 right-5 h-[54px] w-[58px] rounded-full opacity-70 ${
-                      index === 1 ? "bg-[#4F4CB0]/10" : "bg-[#173B6C]/8"
-                    }`}
+                    className="absolute bottom-6 right-6 h-[48px] w-[48px] rounded-full bg-[#e6efd1]/70"
                   />
                   <div
                     aria-hidden="true"
-                    className="absolute bottom-7 right-8 h-[44px] w-[38px] opacity-55"
+                    className="absolute bottom-7 right-8 h-[38px] w-[34px] opacity-[0.5]"
                     style={{
-                      backgroundImage: `radial-gradient(circle, ${
-                        index === 1 ? "rgba(79,76,176,0.7)" : "rgba(23,59,108,0.65)"
-                      } 1.4px, transparent 2px)`,
+                      backgroundImage:
+                        "radial-gradient(circle, rgba(114,132,55,0.7) 1.4px, transparent 2px)",
                       backgroundSize: "9px 9px",
                     }}
                   />
-                  <p className={`text-[11px] font-extrabold uppercase tracking-[0.18em] sm:text-[12px] ${
-                    index === 1 ? "text-[#4F4CB0]" : "text-[#173B6C]"
-                  }`}>
+                  <p className="flex items-center gap-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#62703f] sm:text-[11px]">
+                    <BranchNetworkIcon icon="building" className="h-3.5 w-3.5" />
                     Sri Chaitanya Schools
                   </p>
                   <h3
-                    style={{ fontFamily: "var(--font-poppins), Poppins, sans-serif" }}
-                    className="mt-3 text-[19px] font-extrabold leading-[1.22] text-[#101A5D] sm:text-[21px]"
+                    style={{ fontFamily: "var(--font-righteous), Righteous, sans-serif" }}
+                    className="mt-4 text-[21px] font-normal leading-[1.18] text-[#122016] sm:text-[25px]"
                   >
                     {item.title}
                   </h3>
-                  <span className="mt-4 block h-px w-8 bg-[#4F4CB0]" />
-                  <p className="mt-4 text-[13px] font-medium leading-6 text-[#5F6B85] lg:text-[14px] lg:leading-7">
+                  <span className="mt-4 block h-px w-8 bg-[#62703f]" />
+                  <p className="mt-4 text-[13px] font-medium leading-6 text-[#565c65] lg:text-[14px] lg:leading-7">
                     {item.description}
                   </p>
                   <Link
                     href="/"
-                    className="relative z-10 mt-4 inline-flex items-center gap-3 text-[13px] font-extrabold text-[#173B6C] transition-colors hover:text-[#4F4CB0] lg:text-[14px]"
+                    className="relative z-10 mt-5 inline-flex items-center gap-3 text-[13px] font-extrabold text-[#4c6530] transition-colors hover:text-[#8F4F26] lg:text-[14px]"
                   >
                     View Update
                     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-4 w-4">
@@ -3841,12 +3748,12 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-8 flex items-center justify-center gap-3">
+          <div className="mt-6 flex items-center justify-center gap-2.5">
             {socialNewsItems.map((item, index) => (
               <span
                 key={`social-dot-${item.platform}`}
-                className={`h-2 rounded-full ${
-                  index === 0 ? "w-5 bg-[#173B6C]" : "w-2 bg-[#173B6C]/14"
+                className={`h-2.5 rounded-full ${
+                  index === 0 ? "w-4 bg-[#586238]" : "w-2.5 bg-[#d4d9b4]"
                 }`}
               />
             ))}

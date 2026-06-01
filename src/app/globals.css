@@ -18,6 +18,7 @@
 }
 
 html {
+  overscroll-behavior-y: none;
   overflow-x: clip;
   scroll-behavior: auto;
 }
@@ -27,6 +28,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-montserrat), "Segoe UI", Tahoma, Arial, sans-serif;
   margin: 0;
+  overscroll-behavior-y: none;
   overflow-x: clip;
 }
 
@@ -170,10 +172,19 @@ body {
   .legacy-copy-reveal,
   .legacy-card-reveal,
   .legacy-card-icon,
+  .legacy-card-dot-field,
+  .legacy-card-wave,
+  .legacy-stat-value,
   .legacy-label-dot {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .legacy-card-reveal::before,
+  .legacy-card-reveal::after {
+    animation: none !important;
+    opacity: 0 !important;
   }
 
   .section-decor,
@@ -420,8 +431,52 @@ body {
   will-change: opacity, transform;
 }
 
+.legacy-card-reveal::before {
+  content: "";
+  position: absolute;
+  inset: -45% -58%;
+  z-index: 1;
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.36) 48%,
+    transparent 58%
+  );
+  opacity: 0;
+  transform: translate3d(-34%, 0, 0) rotate(7deg);
+  pointer-events: none;
+}
+
+.legacy-card-reveal::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 14px;
+  opacity: 0;
+  transform: scale(0.965);
+  pointer-events: none;
+}
+
+.legacy-card-reveal:nth-child(odd) {
+  transform: translate3d(-28px, 34px, 0) rotate(-1.1deg) scale(0.985);
+}
+
+.legacy-card-reveal:nth-child(even) {
+  transform: translate3d(28px, 34px, 0) rotate(1.1deg) scale(0.985);
+}
+
 .legacy-card-reveal.is-visible {
   animation: legacyCardRise 920ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.legacy-card-reveal.is-visible::before {
+  animation: legacyCardSheen 3.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s infinite;
+}
+
+.legacy-card-reveal.is-visible::after {
+  animation: legacyCardInnerRing 4.6s ease-in-out 1.1s infinite;
 }
 
 .legacy-card-reveal:nth-child(1).is-visible {
@@ -446,7 +501,9 @@ body {
 }
 
 .legacy-card-reveal.is-visible .legacy-card-icon {
-  animation: legacyIconPop 760ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+  animation:
+    legacyIconPop 760ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both,
+    legacyIconFloat 4.2s ease-in-out 1.25s infinite;
 }
 
 .legacy-card-wave path {
@@ -456,6 +513,30 @@ body {
 
 .legacy-card-reveal.is-visible .legacy-card-wave path {
   animation: legacyWaveDraw 1250ms cubic-bezier(0.22, 1, 0.36, 1) 360ms both;
+}
+
+.legacy-card-reveal.is-visible .legacy-card-wave {
+  animation: legacyWaveFloat 5.2s ease-in-out 1.45s infinite;
+}
+
+.legacy-stat-value {
+  background: linear-gradient(90deg, currentColor 0%, currentColor 38%, rgba(255, 255, 255, 0.86) 50%, currentColor 62%, currentColor 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.legacy-card-reveal.is-visible .legacy-stat-value {
+  animation: legacyStatShine 4.8s ease-in-out 1.35s infinite;
+}
+
+.legacy-card-dot-field {
+  animation: legacyDotFieldDrift 8s ease-in-out infinite alternate;
+}
+
+.legacy-card-dot-field-reverse {
+  animation-direction: alternate-reverse;
 }
 
 .legacy-label-line,
@@ -485,11 +566,15 @@ body {
 }
 
 .legacy-card-reveal.is-visible .legacy-label-dot {
-  animation: legacyDotPop 560ms cubic-bezier(0.16, 1, 0.3, 1) 610ms both;
+  animation:
+    legacyDotPop 560ms cubic-bezier(0.16, 1, 0.3, 1) 610ms both,
+    legacyDotPulse 3.2s ease-in-out 1.35s infinite;
 }
 
 .legacy-card-reveal.is-visible .legacy-card-bottom-line {
-  animation: legacyLineGrow 680ms cubic-bezier(0.22, 1, 0.36, 1) 760ms both;
+  animation:
+    legacyLineGrow 680ms cubic-bezier(0.22, 1, 0.36, 1) 760ms both,
+    legacyBottomLineGlow 3.8s ease-in-out 1.55s infinite;
 }
 
 @keyframes legacyCopyRise {
@@ -507,13 +592,29 @@ body {
 @keyframes legacyCardRise {
   0% {
     opacity: 0;
-    transform: translate3d(0, 34px, 0) scale(0.985);
+    transform: translate3d(var(--legacy-card-x, 0), 34px, 0)
+      rotate(var(--legacy-card-rotate, 0deg)) scale(0.985);
+  }
+
+  64% {
+    opacity: 1;
+    transform: translate3d(0, -8px, 0) rotate(0deg) scale(1.012);
   }
 
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
   }
+}
+
+.legacy-card-reveal:nth-child(odd).is-visible {
+  --legacy-card-x: -28px;
+  --legacy-card-rotate: -1.1deg;
+}
+
+.legacy-card-reveal:nth-child(even).is-visible {
+  --legacy-card-x: 28px;
+  --legacy-card-rotate: 1.1deg;
 }
 
 @keyframes legacyIconPop {
@@ -533,6 +634,17 @@ body {
   }
 }
 
+@keyframes legacyIconFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -6px, 0) scale(1.035);
+  }
+}
+
 @keyframes legacyWaveDraw {
   0% {
     stroke-dashoffset: 360;
@@ -540,6 +652,71 @@ body {
 
   100% {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes legacyWaveFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 5px, 0);
+  }
+}
+
+@keyframes legacyCardSheen {
+  0%,
+  58% {
+    opacity: 0;
+    transform: translate3d(-34%, 0, 0) rotate(7deg);
+  }
+
+  70% {
+    opacity: 0.74;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(34%, 0, 0) rotate(7deg);
+  }
+}
+
+@keyframes legacyCardInnerRing {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.965);
+  }
+
+  45%,
+  62% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+@keyframes legacyStatShine {
+  0%,
+  55% {
+    background-position: 120% 0;
+  }
+
+  100% {
+    background-position: -120% 0;
+  }
+}
+
+@keyframes legacyDotFieldDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.34;
+  }
+
+  100% {
+    transform: translate3d(8px, -5px, 0);
+    opacity: 0.52;
   }
 }
 
@@ -583,6 +760,32 @@ body {
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes legacyDotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 0.72;
+  }
+}
+
+@keyframes legacyBottomLineGlow {
+  0%,
+  100% {
+    filter: brightness(1);
+    transform: scaleX(1);
+  }
+
+  50% {
+    filter: brightness(1.18);
+    transform: scaleX(1.18);
   }
 }
 

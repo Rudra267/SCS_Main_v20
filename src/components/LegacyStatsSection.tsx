@@ -88,14 +88,9 @@ export function LegacyStatsSection() {
       />
       <div
         aria-hidden="true"
-        className="absolute -left-2 top-0 hidden h-[278px] w-[190px] opacity-[0.34] md:block"
-      >
-        <span className="absolute left-[74px] top-[-2px] h-[118px] w-[28px] rotate-[18deg] rounded-[100%_0_100%_0] bg-[#d9c9ad]" />
-        <span className="absolute left-[25px] top-[74px] h-[106px] w-[30px] rotate-[-14deg] rounded-[100%_0_100%_0] bg-[#dacbb1]" />
-        <span className="absolute left-[72px] top-[93px] h-[102px] w-[50px] rotate-[66deg] rounded-[100%_0_100%_0] bg-[#dccdb3]" />
-        <span className="absolute left-[20px] top-[171px] h-[105px] w-[42px] rotate-[82deg] rounded-[100%_0_100%_0] bg-[#dfd1b9]" />
-        <span className="absolute left-[51px] top-[48px] h-[218px] w-px rotate-[25deg] bg-[#cfb895]" />
-      </div>
+        className="absolute left-5 top-0 hidden h-[250px] w-[178px] bg-contain bg-left-top bg-no-repeat opacity-[0.24] sm:left-6 lg:left-7 md:block"
+        style={{ backgroundImage: "url('/png/leaf1.png')" }}
+      />
       <div
         aria-hidden="true"
         className="absolute -right-[62px] -top-[70px] hidden h-[330px] w-[200px] rounded-bl-[165px] rounded-tl-[210px] bg-[#e8ddc8]/70 lg:block"
@@ -110,7 +105,7 @@ export function LegacyStatsSection() {
         }}
       />
 
-      <div className="relative mx-auto w-full max-w-[1490px]">
+      <div className="relative mx-auto w-full max-w-[1320px]">
         <div className="mx-auto max-w-[960px] text-center">
           <div
             data-section-reveal
@@ -123,7 +118,7 @@ export function LegacyStatsSection() {
 
           <h2
             data-wave-reveal
-            className="legacy-heading-wave wave-reveal-heading mt-5 text-[38px] font-extrabold leading-[1.1] tracking-[0] text-[#303B2E] sm:text-[56px] sm:leading-[1.06] lg:text-[76px]"
+            className="legacy-heading-wave wave-reveal-heading mt-4 text-[28px] font-extrabold leading-[1.12] tracking-[0] text-[#303B2E] sm:text-[40px] sm:leading-[1.08] lg:text-[48px]"
           >
             <span>
               An Illustrious Legacy
@@ -159,7 +154,7 @@ export function LegacyStatsSection() {
 
           <div
             data-section-reveal
-            className="legacy-copy-reveal legacy-delay-3 mx-auto mt-7 flex w-[136px] items-center justify-center gap-5 text-[#9B6B33]"
+            className="legacy-copy-reveal legacy-delay-3 mx-auto mt-5 flex w-[124px] items-center justify-center gap-4 text-[#9B6B33]"
           >
             <span className="h-px flex-1 bg-current" />
             <span className="h-2.5 w-2.5 rounded-full bg-current" />
@@ -168,7 +163,7 @@ export function LegacyStatsSection() {
 
           <p
             data-section-reveal
-            className="legacy-copy-reveal legacy-delay-4 mx-auto mt-6 max-w-[790px] text-[14px] font-medium leading-7 text-[#565652] sm:text-[17px] sm:leading-8"
+            className="legacy-copy-reveal legacy-delay-4 mx-auto mt-4 max-w-[720px] text-[13px] font-medium leading-6 text-[#565652] sm:text-[15px] sm:leading-7"
           >
             A journey of excellence, innovation, and leadership
             <span className="hidden sm:inline"> </span>
@@ -178,7 +173,7 @@ export function LegacyStatsSection() {
           </p>
         </div>
 
-        <div className="mx-auto mt-[50px] grid max-w-[344px] grid-cols-1 justify-center gap-7 md:max-w-[760px] md:grid-cols-2 lg:max-w-none lg:grid-cols-4 lg:gap-[38px]">
+        <div className="mx-auto mt-9 grid max-w-[320px] grid-cols-1 justify-center gap-5 md:max-w-[690px] md:grid-cols-2 lg:max-w-none lg:grid-cols-4 lg:gap-6">
           {legacyStats.map((stat) => {
             const Icon = stat.Icon;
             const iconAccent = stat.iconAccent ?? stat.accent;
@@ -188,18 +183,18 @@ export function LegacyStatsSection() {
               <article
                 key={stat.label}
                 data-section-reveal
-                className="legacy-card-reveal group relative min-h-[480px] overflow-hidden rounded-[20px] border px-7 pb-9 pt-[24px] text-center shadow-[0_26px_52px_rgba(70,55,37,0.13)] transition-all duration-300 hover:-translate-y-1.5"
+                className="legacy-card-reveal group relative min-h-[390px] overflow-hidden rounded-[18px] border px-5 pb-6 pt-5 text-center shadow-[0_22px_44px_rgba(70,55,37,0.12)] transition-all duration-300 hover:-translate-y-1.5"
                 style={{
                   borderColor: stat.border,
                   background:
                     "radial-gradient(circle at 50% 0%, rgba(255,255,255,0.96) 0%, rgba(255,252,246,0.98) 42%, rgba(249,244,235,0.96) 100%)",
-                  boxShadow: `0 28px 54px rgba(70,55,37,0.12), 0 0 42px ${stat.glow}`,
+                  boxShadow: `0 22px 44px rgba(70,55,37,0.11), 0 0 34px ${stat.glow}`,
                 }}
               >
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 292 96"
-                  className="legacy-card-wave absolute left-0 top-[72px] h-[94px] w-full opacity-[0.78] transition-opacity duration-300 group-hover:opacity-95"
+                  className="legacy-card-wave absolute left-0 top-[60px] h-[78px] w-full opacity-[0.78] transition-opacity duration-300 group-hover:opacity-95"
                   preserveAspectRatio="none"
                 >
                   <path
@@ -213,7 +208,7 @@ export function LegacyStatsSection() {
 
                 <div
                   aria-hidden="true"
-                  className="absolute -bottom-2 -left-1 h-[104px] w-[128px] opacity-45"
+                  className="legacy-card-dot-field absolute -bottom-2 -left-1 h-[82px] w-[108px] opacity-40"
                   style={{
                     backgroundImage: `radial-gradient(circle, ${stat.accent} 1.4px, transparent 2.15px)`,
                     backgroundSize: "12px 12px",
@@ -221,7 +216,7 @@ export function LegacyStatsSection() {
                 />
                 <div
                   aria-hidden="true"
-                  className="absolute bottom-0 right-2 h-[106px] w-[130px] opacity-45"
+                  className="legacy-card-dot-field legacy-card-dot-field-reverse absolute bottom-0 right-2 h-[84px] w-[108px] opacity-40"
                   style={{
                     backgroundImage: `radial-gradient(circle, ${stat.accent} 1.4px, transparent 2.15px)`,
                     backgroundSize: "12px 12px",
@@ -229,23 +224,23 @@ export function LegacyStatsSection() {
                 />
 
                 <div
-                  className="legacy-card-icon relative z-10 mx-auto flex h-[92px] w-[92px] items-center justify-center rounded-full border-[7px] border-white text-white shadow-[0_16px_30px_rgba(72,57,37,0.22)] transition-transform duration-300 group-hover:scale-105"
+                  className="legacy-card-icon relative z-10 mx-auto flex h-[74px] w-[74px] items-center justify-center rounded-full border-[6px] border-white text-white shadow-[0_14px_26px_rgba(72,57,37,0.2)] transition-transform duration-300 group-hover:scale-105"
                   style={{
                     backgroundColor: iconAccent,
                     boxShadow: `0 18px 34px ${stat.glow}, inset 0 1px 0 rgba(255,255,255,0.28)`,
                   }}
                 >
-                  <Icon className="h-11 w-11" strokeWidth={1.75} />
+                  <Icon className="h-9 w-9" strokeWidth={1.75} />
                 </div>
 
                 <p
-                  className="relative z-10 mt-[52px] text-[50px] font-extrabold leading-none tracking-[0] drop-shadow-[0_6px_0_rgba(70,57,36,0.08)] sm:text-[56px]"
+                  className="legacy-stat-value relative z-10 mt-11 text-[40px] font-extrabold leading-none tracking-[0] drop-shadow-[0_5px_0_rgba(70,57,36,0.08)] sm:text-[45px]"
                   style={{ color: stat.accent }}
                 >
                   {stat.value}
                 </p>
 
-                <div className="relative z-10 mx-auto mt-7 flex w-[190px] items-center justify-center gap-2.5">
+                <div className="relative z-10 mx-auto mt-5 flex w-[164px] items-center justify-center gap-2">
                   <span
                     className="legacy-label-line h-px flex-1"
                     style={{ backgroundColor: stat.accent }}
@@ -255,7 +250,7 @@ export function LegacyStatsSection() {
                     style={{ backgroundColor: stat.accent }}
                   />
                   <h3
-                    className="text-[12px] font-extrabold uppercase leading-none tracking-[0.18em]"
+                    className="text-[10px] font-extrabold uppercase leading-none tracking-[0.16em]"
                     style={{ color: stat.accent }}
                   >
                     {stat.label}
@@ -270,7 +265,7 @@ export function LegacyStatsSection() {
                   />
                 </div>
 
-                <p className="relative z-10 mt-10 text-[15px] font-medium leading-7 text-[#272b2e] sm:text-[16px]">
+                <p className="relative z-10 mt-7 text-[13px] font-medium leading-6 text-[#272b2e] sm:text-[14px]">
                   {stat.description.map((line) => (
                     <span key={line} className="block">
                       {line}
@@ -280,7 +275,7 @@ export function LegacyStatsSection() {
 
                 <span
                   aria-hidden="true"
-                  className="legacy-card-bottom-line relative z-10 mx-auto mt-[58px] block h-2 w-[88px] rounded-full transition-all duration-300 group-hover:w-24"
+                  className="legacy-card-bottom-line relative z-10 mx-auto mt-9 block h-1.5 w-[72px] rounded-full transition-all duration-300 group-hover:w-20"
                   style={{ backgroundColor: stat.accent }}
                 />
               </article>
