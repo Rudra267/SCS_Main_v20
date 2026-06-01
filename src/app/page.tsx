@@ -2100,7 +2100,11 @@ export default function Home() {
             <img
               src="/header-new.png?v=20260508-1"
               alt="Sri Chaitanya header banner"
+              width={1535}
+              height={859}
               loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className="home-hero-image block h-auto w-full"
             />
           </picture>
@@ -2232,7 +2236,8 @@ export default function Home() {
                           alt={`Admissions banner ${index + 1}`}
                           width={slide.width}
                           height={slide.height}
-                          sizes="100vw"
+                          sizes="(max-width: 767px) 100vw, (max-width: 1439px) 92vw, 1320px"
+                          loading={index === admissionsBannerIndex ? "eager" : "lazy"}
                           className="h-full w-full object-cover"
                         />
                       ) : (
@@ -2241,11 +2246,10 @@ export default function Home() {
                             admissionsBannerVideoRefs.current[index] = element;
                           }}
                           src={slide.src}
-                          autoPlay
                           muted
                           loop
                           playsInline
-                          preload="auto"
+                          preload="none"
                           className="h-full w-full object-cover"
                         />
                       )}
@@ -2294,12 +2298,12 @@ export default function Home() {
           <div
             aria-hidden="true"
             className="absolute left-0 top-[72px] hidden h-[270px] w-[190px] bg-contain bg-left-top bg-no-repeat opacity-[0.22] lg:block"
-            style={{ backgroundImage: "url('/png/leaf1.png')" }}
+            style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
           />
           <div
             aria-hidden="true"
             className="absolute right-0 top-[82px] hidden h-[270px] w-[190px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.18] lg:block"
-            style={{ backgroundImage: "url('/png/leaf1.png')" }}
+            style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
           />
           <div
             data-section-reveal
@@ -2457,12 +2461,12 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute -left-1 top-7 hidden h-[300px] w-[210px] bg-contain bg-left-top bg-no-repeat opacity-[0.22] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
           className="absolute right-0 top-10 hidden h-[280px] w-[200px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.16] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
@@ -2645,7 +2649,6 @@ export default function Home() {
                                 ? "panelMediaReveal 680ms cubic-bezier(0.22,1,0.36,1) both"
                                 : undefined,
                             }}
-                            priority={index === 0}
                           />
                           <div className="pointer-events-none absolute inset-0 rounded-[18px] border-[7px] border-[#d9d6b8]" />
                           <div className="absolute inset-0 rounded-[18px] bg-[linear-gradient(90deg,rgba(48,64,35,0.34)_0%,rgba(48,64,35,0.07)_38%,rgba(255,255,255,0)_100%)]" />
@@ -2705,12 +2708,12 @@ export default function Home() {
             <div
               aria-hidden="true"
               className="pointer-events-none absolute left-0 top-0 h-[150px] w-[145px] bg-contain bg-left-top bg-no-repeat opacity-65"
-              style={{ backgroundImage: "url('/png/leaf1.png')" }}
+              style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
             />
             <div
               aria-hidden="true"
               className="pointer-events-none absolute bottom-0 right-0 h-[140px] w-[140px] scale-x-[-1] bg-contain bg-left-bottom bg-no-repeat opacity-65"
-              style={{ backgroundImage: "url('/png/leaf1.png')" }}
+              style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
             />
             <div
               aria-hidden="true"
@@ -2999,7 +3002,7 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute right-0 top-10 hidden h-[315px] w-[220px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.17] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
@@ -3197,7 +3200,7 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute right-[-42px] top-0 hidden h-[240px] w-[230px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.18] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
@@ -3398,7 +3401,7 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute -left-4 top-8 hidden h-[280px] w-[220px] bg-contain bg-left-top bg-no-repeat opacity-[0.18] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
@@ -3416,7 +3419,7 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute right-0 bottom-[72px] hidden h-[210px] w-[180px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.14] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
 
         <div className="relative z-10 mx-auto w-full max-w-[1360px]">
@@ -3660,7 +3663,7 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute -left-1 top-[72px] hidden h-[270px] w-[190px] bg-contain bg-left-top bg-no-repeat opacity-[0.2] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
@@ -3678,7 +3681,7 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute bottom-[108px] right-0 hidden h-[250px] w-[180px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.16] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
@@ -3815,17 +3818,17 @@ export default function Home() {
         <div
           aria-hidden="true"
           className="absolute -left-10 top-6 hidden h-[265px] w-[250px] bg-contain bg-left-top bg-no-repeat opacity-[0.12] md:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
           className="absolute -bottom-10 -right-12 hidden h-[270px] w-[330px] scale-x-[-1] bg-contain bg-right-bottom bg-no-repeat opacity-[0.13] md:block"
-          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
         />
         <div
           aria-hidden="true"
           className="absolute right-0 top-0 hidden h-[132px] w-[232px] opacity-[0.22] lg:block"
-          style={{
+          style={{ 
             backgroundImage:
               "radial-gradient(circle, rgba(163, 133, 90, 0.38) 4px, transparent 5px)",
             backgroundSize: "28px 28px",
@@ -3850,7 +3853,7 @@ export default function Home() {
               src="/belowbanner.png"
               alt="Sri Chaitanya admission banner"
               fill
-              sizes="100vw"
+              sizes="(max-width: 1279px) 100vw, 1180px"
               className="object-cover object-center"
             />
           </div>
@@ -4109,6 +4112,7 @@ export default function Home() {
     </main>
   );
 }
+
 
 
 

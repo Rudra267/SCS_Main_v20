@@ -2,15 +2,15 @@
 @import "lenis/dist/lenis.css";
 
 :root {
-  --background: #E9EFF9;
-  --foreground: #173B6C;
+  --background: #e9eff9;
+  --foreground: #173b6c;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-montserrat);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -76,8 +76,7 @@ body {
 
 .section-decor.is-visible {
   animation: sectionBlobDrift var(--decor-blob-duration)
-    cubic-bezier(0.45, 0, 0.2, 1)
-    var(--decor-blob-delay) infinite alternate;
+    cubic-bezier(0.45, 0, 0.2, 1) var(--decor-blob-delay) infinite alternate;
   filter: blur(18px) saturate(1.1);
   opacity: var(--decor-opacity);
   transform: var(--decor-final-transform)
@@ -99,7 +98,11 @@ body {
   --decor-blob-y: -16px;
   --decor-drift-x: var(--decor-scroll-a-x, 0px);
   --decor-drift-y: var(--decor-scroll-a-y, 0px);
-  background: linear-gradient(135deg, rgba(107, 147, 214, 0.58), rgba(216, 197, 150, 0.74));
+  background: linear-gradient(
+    135deg,
+    rgba(107, 147, 214, 0.58),
+    rgba(216, 197, 150, 0.74)
+  );
   border-radius: 66% 34% 48% 52% / 58% 32% 68% 42%;
 }
 
@@ -120,7 +123,11 @@ body {
   --decor-blob-y: 12px;
   --decor-drift-x: var(--decor-scroll-c-x, 0px);
   --decor-drift-y: var(--decor-scroll-c-y, 0px);
-  background: linear-gradient(90deg, rgba(107, 147, 214, 0.48), rgba(159, 193, 100, 0.34));
+  background: linear-gradient(
+    90deg,
+    rgba(107, 147, 214, 0.48),
+    rgba(159, 193, 100, 0.34)
+  );
   border-radius: 999px;
 }
 
@@ -130,7 +137,11 @@ body {
   --decor-blob-y: 14px;
   --decor-drift-x: var(--decor-scroll-d-x, 0px);
   --decor-drift-y: var(--decor-scroll-d-y, 0px);
-  background: linear-gradient(135deg, rgba(216, 197, 150, 0.8), rgba(107, 147, 214, 0.38));
+  background: linear-gradient(
+    135deg,
+    rgba(216, 197, 150, 0.8),
+    rgba(107, 147, 214, 0.38)
+  );
   border: 1px solid rgba(79, 76, 176, 0.26);
   border-radius: 30px;
 }
@@ -141,7 +152,11 @@ body {
   --decor-blob-y: -10px;
   --decor-drift-x: var(--decor-scroll-b-x, 0px);
   --decor-drift-y: var(--decor-scroll-b-y, 0px);
-  background-image: radial-gradient(circle, rgba(79, 76, 176, 0.48) 2.2px, transparent 2.9px);
+  background-image: radial-gradient(
+    circle,
+    rgba(79, 76, 176, 0.48) 2.2px,
+    transparent 2.9px
+  );
   background-size: 18px 18px;
 }
 
@@ -161,7 +176,11 @@ body {
   --decor-blob-y: 16px;
   --decor-drift-x: var(--decor-scroll-d-x, 0px);
   --decor-drift-y: var(--decor-scroll-d-y, 0px);
-  background: linear-gradient(135deg, rgba(216, 197, 150, 0.72), rgba(233, 239, 249, 0.82));
+  background: linear-gradient(
+    135deg,
+    rgba(216, 197, 150, 0.72),
+    rgba(233, 239, 249, 0.82)
+  );
   border-radius: 46px 140px 46px 140px;
 }
 
@@ -323,11 +342,7 @@ body {
   68% {
     filter: blur(22px) saturate(1.14);
     transform: var(--legacy-blob-transform)
-      translate3d(
-        calc(var(--legacy-blob-x) * 0.14),
-        var(--legacy-blob-y),
-        0
-      )
+      translate3d(calc(var(--legacy-blob-x) * 0.14), var(--legacy-blob-y), 0)
       scale3d(0.976, 1.038, 1);
   }
 
@@ -453,8 +468,7 @@ body {
 }
 
 .legacy-heading-wave.is-visible .legacy-shape-underline path:first-child {
-  animation: legacyUnderlineDraw 720ms cubic-bezier(0.22, 1, 0.36, 1) 980ms
-    both;
+  animation: legacyUnderlineDraw 720ms cubic-bezier(0.22, 1, 0.36, 1) 980ms both;
 }
 
 .legacy-heading-wave.is-visible .legacy-shape-underline path:last-child {
@@ -464,24 +478,8 @@ body {
 
 .legacy-card-reveal {
   opacity: 0;
-  transform: translate3d(0, 34px, 0) scale(0.985);
+  transform: translate3d(0, 72px, 0) scale(0.98);
   will-change: opacity, transform;
-}
-
-.legacy-card-reveal::before {
-  content: "";
-  position: absolute;
-  inset: -45% -58%;
-  z-index: 1;
-  background: linear-gradient(
-    110deg,
-    transparent 38%,
-    rgba(255, 255, 255, 0.36) 48%,
-    transparent 58%
-  );
-  opacity: 0;
-  transform: translate3d(-34%, 0, 0) rotate(7deg);
-  pointer-events: none;
 }
 
 .legacy-card-reveal::after {
@@ -496,20 +494,8 @@ body {
   pointer-events: none;
 }
 
-.legacy-card-reveal:nth-child(odd) {
-  transform: translate3d(-28px, 34px, 0) rotate(-1.1deg) scale(0.985);
-}
-
-.legacy-card-reveal:nth-child(even) {
-  transform: translate3d(28px, 34px, 0) rotate(1.1deg) scale(0.985);
-}
-
 .legacy-card-reveal.is-visible {
-  animation: legacyCardRise 920ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.legacy-card-reveal.is-visible::before {
-  animation: legacyCardSheen 3.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s infinite;
+  animation: legacyCardRise 840ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .legacy-card-reveal.is-visible::after {
@@ -517,19 +503,19 @@ body {
 }
 
 .legacy-card-reveal:nth-child(1).is-visible {
-  animation-delay: 90ms;
+  animation-delay: 80ms;
 }
 
 .legacy-card-reveal:nth-child(2).is-visible {
-  animation-delay: 180ms;
+  animation-delay: 210ms;
 }
 
 .legacy-card-reveal:nth-child(3).is-visible {
-  animation-delay: 270ms;
+  animation-delay: 340ms;
 }
 
 .legacy-card-reveal:nth-child(4).is-visible {
-  animation-delay: 360ms;
+  animation-delay: 470ms;
 }
 
 .legacy-card-icon {
@@ -557,15 +543,24 @@ body {
 }
 
 .legacy-stat-value {
-  background: linear-gradient(90deg, currentColor 0%, currentColor 38%, rgba(255, 255, 255, 0.86) 50%, currentColor 62%, currentColor 100%);
-  background-size: 220% 100%;
+  background: linear-gradient(
+    105deg,
+    currentColor 0%,
+    currentColor 38%,
+    rgba(255, 255, 255, 0.24) 45%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(255, 255, 255, 0.24) 55%,
+    currentColor 64%,
+    currentColor 100%
+  );
+  background-size: 360% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .legacy-card-reveal.is-visible .legacy-stat-value {
-  animation: legacyStatShine 4.8s ease-in-out 1.35s infinite;
+  animation: legacyStatShine 15s ease-in-out 1.6s infinite;
 }
 
 .legacy-card-dot-field {
@@ -629,29 +624,18 @@ body {
 @keyframes legacyCardRise {
   0% {
     opacity: 0;
-    transform: translate3d(var(--legacy-card-x, 0), 34px, 0)
-      rotate(var(--legacy-card-rotate, 0deg)) scale(0.985);
+    transform: translate3d(0, 72px, 0) scale(0.98);
   }
 
   64% {
     opacity: 1;
-    transform: translate3d(0, -8px, 0) rotate(0deg) scale(1.012);
+    transform: translate3d(0, -7px, 0) scale(1.01);
   }
 
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
   }
-}
-
-.legacy-card-reveal:nth-child(odd).is-visible {
-  --legacy-card-x: -28px;
-  --legacy-card-rotate: -1.1deg;
-}
-
-.legacy-card-reveal:nth-child(even).is-visible {
-  --legacy-card-x: 28px;
-  --legacy-card-rotate: 1.1deg;
 }
 
 @keyframes legacyIconPop {
@@ -703,23 +687,6 @@ body {
   }
 }
 
-@keyframes legacyCardSheen {
-  0%,
-  58% {
-    opacity: 0;
-    transform: translate3d(-34%, 0, 0) rotate(7deg);
-  }
-
-  70% {
-    opacity: 0.74;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate3d(34%, 0, 0) rotate(7deg);
-  }
-}
-
 @keyframes legacyCardInnerRing {
   0%,
   100% {
@@ -736,12 +703,16 @@ body {
 
 @keyframes legacyStatShine {
   0%,
-  55% {
-    background-position: 120% 0;
+  62% {
+    background-position: 150% 0;
+  }
+
+  82% {
+    background-position: 0% 0;
   }
 
   100% {
-    background-position: -120% 0;
+    background-position: -150% 0;
   }
 }
 
@@ -969,7 +940,7 @@ body {
   }
 
   .home-hero-media {
-    background: #E9EFF9;
+    background: #e9eff9;
   }
 
   .home-hero-image {
@@ -1371,6 +1342,3 @@ a {
     transform: translate3d(0, 0, 0) skewY(0deg) scaleY(1);
   }
 }
-
-
-
