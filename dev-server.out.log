@@ -1,9 +1,14 @@
 
 > v9@0.1.0 dev
-> next dev -p 3003
+> next dev
 
 ▲ Next.js 16.2.4 (Turbopack)
-- Local:         http://localhost:3003
-- Network:       http://10.30.30.167:3003
-✓ Ready in 565ms
-[?25h
+- Local:         http://localhost:3000
+- Network:       http://10.30.30.167:3000
+✓ Ready in 578ms
+Creating turbopack project {
+  dir: 'D:\\scs_project\\New folder\\Main-Home\\frontend\\selected\\v20',
+  testMode: true
+}
+
+ GET / 200 in 1074ms (next.js: 831ms, application-code: 243ms)

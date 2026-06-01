@@ -981,7 +981,7 @@ const SocialNewsIcon = ({ index }: { index: number }) => {
 };
 
 const FooterGallery = () => (
-  <section className="relative z-30 h-[220px] w-full overflow-hidden bg-white sm:h-[274px] lg:h-[336px]">
+  <section className="relative z-30 h-[220px] w-full overflow-hidden bg-[linear-gradient(180deg,#f4e8d6_0%,#fbf6ee_44%,#f7efe3_100%)] sm:h-[274px] lg:h-[336px]">
     <div className="absolute inset-x-0 bottom-0 h-[220px] sm:h-[274px] lg:h-[336px]">
       <div className="absolute left-1/2 bottom-[-62px] z-10 flex min-w-max -translate-x-1/2 items-end">
         {footerGalleryCards.map((item, index) => {
@@ -2958,13 +2958,21 @@ export default function Home() {
               <div className="flex justify-end pt-2 sm:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex min-h-[60px] w-full max-w-[360px] items-center justify-between rounded-full border border-[#22351f] bg-[#24462b] px-4 text-[19px] font-extrabold text-white shadow-[0_14px_28px_rgba(36,70,43,0.22)] transition-colors duration-300 hover:bg-[#315d39]"
+                  className="admission-submit-button inline-flex min-h-[60px] w-full max-w-[360px] items-center justify-between rounded-full border border-[#22351f] bg-[#24462b] px-4 text-[19px] font-extrabold text-white shadow-[0_14px_28px_rgba(36,70,43,0.22)] transition-colors duration-300 hover:bg-[#315d39]"
                 >
-                  <span className="grid h-12 w-12 place-items-center rounded-full bg-[#e6ecc5] text-[#29472c]">
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-                      <path d="m4 12 16-7-7 16-2.2-7.8L4 12Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-                      <path d="m10.8 13.2 4.4-4.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
+                  <span className="admission-submit-icon-wrap relative h-12 w-12 overflow-hidden rounded-full bg-[#e6ecc5] text-[#29472c]">
+                    {["current", "next"].map((state) => (
+                      <span
+                        key={state}
+                        className={`admission-submit-icon admission-submit-icon-${state} absolute inset-0 grid place-items-center rounded-full`}
+                        aria-hidden="true"
+                      >
+                        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none">
+                          <path d="m4 12 16-7-7 16-2.2-7.8L4 12Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+                          <path d="m10.8 13.2 4.4-4.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                      </span>
+                    ))}
                   </span>
                   <span>Submit Enquiry</span>
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6">
@@ -3803,9 +3811,41 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="mt-8 bg-[#E9EFF9] px-3 pb-16 sm:mt-10 sm:px-5 sm:pb-20 lg:mt-12 lg:px-8 lg:pb-24">
-        <div className="mx-auto w-full max-w-[1180px]">
-          <div className="relative aspect-[1465/386] overflow-hidden rounded-[22px] bg-transparent shadow-[0_22px_54px_rgba(23,59,108,0.14)] sm:rounded-[24px]">
+      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_32%,#fff7eb_0%,#f4e8d6_48%,#ead9bd_100%)] px-3 pb-0 pt-5 sm:px-5 sm:pt-5 lg:px-8 lg:pt-18">
+        <div
+          aria-hidden="true"
+          className="absolute -left-10 top-6 hidden h-[265px] w-[250px] bg-contain bg-left-top bg-no-repeat opacity-[0.12] md:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-10 -right-12 hidden h-[270px] w-[330px] scale-x-[-1] bg-contain bg-right-bottom bg-no-repeat opacity-[0.13] md:block"
+          style={{ backgroundImage: "url('/png/leaf1.png')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-0 hidden h-[132px] w-[232px] opacity-[0.22] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(163, 133, 90, 0.38) 4px, transparent 5px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-[104px] hidden h-[54px] w-[214px] opacity-[0.18] lg:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(163, 133, 90, 0.38) 2.5px, transparent 3.5px)",
+            backgroundSize: "22px 22px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.38),rgba(255,255,255,0)_28%,rgba(255,255,255,0.24)_72%,rgba(255,255,255,0.44))]"
+        />
+        <div className="relative z-10 mx-auto w-full max-w-[1180px]">
+          <div className="relative aspect-[1465/386] overflow-hidden rounded-[22px] bg-[#08345d] shadow-[0_24px_48px_rgba(78,52,21,0.22)] ring-1 ring-[#f8ecd7]/70 sm:rounded-[24px] lg:rounded-[26px]">
             <Image
               src="/belowbanner.png"
               alt="Sri Chaitanya admission banner"
