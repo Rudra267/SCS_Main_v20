@@ -96,12 +96,17 @@ const CountUpValue = ({ value }: { value: string }) => {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (prefersReducedMotion) {
-      setDisplayValue(target);
-      return;
-    }
-
     let frameId = 0;
+
+    if (prefersReducedMotion) {
+      frameId = window.requestAnimationFrame(() => {
+        setDisplayValue(target);
+      });
+
+      return () => {
+        window.cancelAnimationFrame(frameId);
+      };
+    }
 
     const startCounting = () => {
       if (hasAnimatedRef.current) {
