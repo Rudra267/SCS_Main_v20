@@ -72,6 +72,8 @@ const aboutExperiencePillars = [
   },
 ];
 
+const aboutExperienceDeckCards = aboutExperiencePillars.slice(0, 5);
+
 // const aboutExperienceHighlights = [
 //   {
 //     title: "Collaborate",
@@ -486,6 +488,42 @@ const footerGalleryCards = [
     z: 3,
     objectPosition: "center",
   },
+  {
+    src: "/blog/1.jpeg",
+    alt: "Students during a school activity",
+    marginLeft: -38,
+    rotate: -4,
+    y: 7,
+    z: 4,
+    objectPosition: "center",
+  },
+  {
+    src: "/blog/3.jpg",
+    alt: "Students participating in a campus event",
+    marginLeft: -36,
+    rotate: 4,
+    y: 5,
+    z: 6,
+    objectPosition: "center",
+  },
+  {
+    src: "/blog/4.jpg",
+    alt: "Classroom learning moment",
+    marginLeft: -34,
+    rotate: -5,
+    y: 8,
+    z: 5,
+    objectPosition: "center",
+  },
+  {
+    src: "/hero-banners/home/5.jpeg",
+    alt: "Sri Chaitanya students on campus",
+    marginLeft: -40,
+    rotate: 3,
+    y: 6,
+    z: 7,
+    objectPosition: "center",
+  },
 ];
 
 const footerGalleryCardSize = {
@@ -620,77 +658,6 @@ const FooterCategoryIcon = ({ label }: { label: string }) => {
     <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none">
       <path {...commonPathProps} d="M7 3v3M17 3v3M4 9h16M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" />
       <path {...commonPathProps} d="M8 13h3M13 13h3M8 16h3" />
-    </svg>
-  );
-};
-
-const AboutExperienceIcon = ({ icon }: { icon: string }) => {
-  const pathProps = {
-    stroke: "currentColor",
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-    strokeWidth: 1.9,
-  };
-
-  if (icon === "handshake") {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-        <path {...pathProps} d="m8.4 12.2 2.2 2.2a2 2 0 0 0 2.8 0l4.1-4.1" />
-        <path {...pathProps} d="m14 7.5 1.4-1.4a3.2 3.2 0 0 1 4.5 0l1.1 1.1-4.2 4.2" />
-        <path {...pathProps} d="m10 7.5-1.4-1.4a3.2 3.2 0 0 0-4.5 0L3 7.2l5.6 5.6" />
-        <path {...pathProps} d="m7.6 14.4 1.7 1.7M10.2 16.7l1 1" />
-      </svg>
-    );
-  }
-
-  if (icon === "globe") {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-        <circle {...pathProps} cx="12" cy="12" r="8.5" />
-        <path {...pathProps} d="M3.8 12h16.4M12 3.5c2.4 2.5 3.7 5.4 3.7 8.5S14.4 18 12 20.5M12 3.5C9.6 6 8.3 8.9 8.3 12S9.6 18 12 20.5" />
-      </svg>
-    );
-  }
-
-  if (icon === "people") {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-        <path {...pathProps} d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM4 20v-1.5A4.5 4.5 0 0 1 8.5 14h0A4.5 4.5 0 0 1 13 18.5V20M12 15.1A4.5 4.5 0 0 1 15.5 14h0A4.5 4.5 0 0 1 20 18.5V20" />
-      </svg>
-    );
-  }
-
-  if (icon === "cap") {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-        <path {...pathProps} d="m3 8.5 9-4 9 4-9 4-9-4Z" />
-        <path {...pathProps} d="M6.5 11v4.6c3.1 2.2 7.9 2.2 11 0V11M20.5 9v5" />
-      </svg>
-    );
-  }
-
-  if (icon === "briefcase") {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-        <path {...pathProps} d="M9 7V5.8A1.8 1.8 0 0 1 10.8 4h2.4A1.8 1.8 0 0 1 15 5.8V7M4.5 8.5h15v10h-15v-10Z" />
-        <path {...pathProps} d="M4.5 12.5c4.7 1.6 10.3 1.6 15 0M12 11.5v3" />
-      </svg>
-    );
-  }
-
-  if (icon === "lightbulb") {
-    return (
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-        <path {...pathProps} d="M9 18h6M10 21h4M8.2 14.8a6 6 0 1 1 7.6 0c-.8.6-1.1 1.4-1.1 2.2H9.3c0-.8-.3-1.6-1.1-2.2ZM12 2.5v1.8M4.9 5.4l1.3 1.3M19.1 5.4l-1.3 1.3M2.5 12h1.8M19.7 12h1.8" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
-      <path {...pathProps} d="M12 21a9 9 0 1 0-9-9 9 9 0 0 0 9 9Z" />
-      <path {...pathProps} d="M12 16a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" />
-      <path {...pathProps} d="M12 12h8.5M12 12l4.8-4.8" />
     </svg>
   );
 };
@@ -981,49 +948,49 @@ const SocialNewsIcon = ({ index }: { index: number }) => {
 };
 
 const FooterGallery = () => (
-  <section className="relative z-30 h-[220px] w-full overflow-hidden bg-[linear-gradient(180deg,#f4e8d6_0%,#fbf6ee_44%,#f7efe3_100%)] sm:h-[274px] lg:h-[336px]">
-    <div className="absolute inset-x-0 bottom-0 h-[220px] sm:h-[274px] lg:h-[336px]">
-      <div className="absolute left-1/2 bottom-[-62px] z-10 flex min-w-max -translate-x-1/2 items-end">
-        {footerGalleryCards.map((item, index) => {
-          const width = `clamp(${Math.round(footerGalleryCardSize.width * 0.52)}px, ${(
-            footerGalleryCardSize.width / 19.2
-          ).toFixed(2)}vw, ${footerGalleryCardSize.width}px)`;
-          const height = `clamp(${Math.round(footerGalleryCardSize.height * 0.62)}px, ${(
-            footerGalleryCardSize.height / 13.44
-          ).toFixed(2)}vw, ${footerGalleryCardSize.height}px)`;
-          const marginLeft =
-            item.marginLeft === 0
-              ? 0
-              : `clamp(${Math.round(item.marginLeft * 0.58)}px, ${(
-                  item.marginLeft / 19.2
-                ).toFixed(2)}vw, ${item.marginLeft}px)`;
+  <section className="relative z-30 h-[280px] w-full overflow-hidden bg-[linear-gradient(180deg,#f4e8d6_0%,#fbf6ee_44%,#f7efe3_100%)] sm:h-[340px] lg:h-[408px]">
+    <div className="absolute inset-x-0 bottom-0 h-[280px] sm:h-[340px] lg:h-[408px]">
+      <div className="footer-gallery-track absolute left-0 top-1/2 z-10 flex w-max -translate-y-1/2 items-center">
+        {[0, 1].map((loopIndex) => (
+          <div
+            key={`footer-gallery-loop-${loopIndex}`}
+            className="footer-gallery-loop flex shrink-0 items-center gap-4 sm:gap-5 lg:gap-6"
+            aria-hidden={loopIndex === 1}
+          >
+            {footerGalleryCards.map((item, index) => {
+              const width = `clamp(${Math.round(footerGalleryCardSize.width * 0.52)}px, ${(
+                footerGalleryCardSize.width / 19.2
+              ).toFixed(2)}vw, ${footerGalleryCardSize.width}px)`;
+              const height = `clamp(${Math.round(footerGalleryCardSize.height * 0.62)}px, ${(
+                footerGalleryCardSize.height / 13.44
+              ).toFixed(2)}vw, ${footerGalleryCardSize.height}px)`;
 
-          return (
-            <article
-              key={`${item.src}-${index}`}
-              className="footer-gallery-card relative shrink-0 overflow-hidden border-[4px] border-white bg-white sm:border-[5px]"
-              style={{
-                "--gallery-card-y": `${item.y}px`,
-                "--gallery-card-rotate": `${item.rotate}deg`,
-                "--gallery-card-hover-y": `-${Math.max(36, footerGalleryCardSize.height * 0.16)}px`,
-                width,
-                height,
-                marginLeft,
-                zIndex: item.z,
-              } as CSSProperties}
-            >
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 640px) 52vw, (max-width: 1024px) 26vw, 18vw"
-                className="object-cover"
-                style={{ objectPosition: item.objectPosition }}
-              />
-            </article>
-          );
-        })}
+              return (
+                <article
+                  key={`${loopIndex}-${item.src}-${index}`}
+                  className="footer-gallery-card relative shrink-0 overflow-hidden bg-white"
+                  style={{
+                    width,
+                    height,
+                    zIndex: item.z,
+                  } as CSSProperties}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 52vw, (max-width: 1024px) 26vw, 18vw"
+                    className="object-cover"
+                    style={{ objectPosition: item.objectPosition }}
+                  />
+                </article>
+              );
+            })}
+          </div>
+        ))}
       </div>
+      <div className="footer-gallery-edge footer-gallery-edge-left" aria-hidden="true" />
+      <div className="footer-gallery-edge footer-gallery-edge-right" aria-hidden="true" />
     </div>
   </section>
 );
@@ -1101,19 +1068,19 @@ const CampusMomentIcon = ({ icon }: { icon: string }) => {
 };
 
 export default function Home() {
+  const aboutExperienceSectionRef = useRef<HTMLElement | null>(null);
+  const aboutExperienceDeckRef = useRef<HTMLDivElement | null>(null);
   const studentStoriesSectionRef = useRef<HTMLElement | null>(null);
   const storyCarouselRef = useRef<HTMLDivElement | null>(null);
   const featuredCitiesSectionRef = useRef<HTMLDivElement | null>(null);
   const campusGalleryRef = useRef<HTMLDivElement | null>(null);
   const admissionsBannerVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const aboutPillarHoverTimeoutRef = useRef<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(
     "About",
   );
   const [activeStoryIndex, setActiveStoryIndex] = useState(0);
   const [storyCardsPerView, setStoryCardsPerView] = useState(2);
-  const [activeAboutPillarIndex, setActiveAboutPillarIndex] = useState(0);
   const [featuredCitiesPerView, setFeaturedCitiesPerView] = useState(
     featuredCities.length,
   );
@@ -1125,7 +1092,6 @@ export default function Home() {
     "next" | "prev"
   >("next");
   const [admissionsBannerIndex, setAdmissionsBannerIndex] = useState(3);
-  const [aboutPillarsIntroVisible, setAboutPillarsIntroVisible] = useState(false);
   const [featuredCitiesVisible, setFeaturedCitiesVisible] = useState(false);
   const [campusGalleryVisible, setCampusGalleryVisible] = useState(false);
   const [isAdmissionModalOpen, setIsAdmissionModalOpen] = useState(false);
@@ -1161,21 +1127,6 @@ export default function Home() {
       setActiveFeaturedCityName(featuredCities[nextIndex].name);
       return nextIndex;
     });
-  };
-
-  const activateAboutPillar = (index: number, delay = 0) => {
-    if (aboutPillarHoverTimeoutRef.current !== null) {
-      window.clearTimeout(aboutPillarHoverTimeoutRef.current);
-    }
-
-    if (delay <= 0) {
-      setActiveAboutPillarIndex(index);
-      return;
-    }
-
-    aboutPillarHoverTimeoutRef.current = window.setTimeout(() => {
-      setActiveAboutPillarIndex(index);
-    }, delay);
   };
 
   const handleOpenAdmissionModal = (cityName: string) => {
@@ -1222,22 +1173,6 @@ export default function Home() {
   }, [isAdmissionModalOpen, isMenuOpen]);
 
   useEffect(() => {
-    return () => {
-      if (aboutPillarHoverTimeoutRef.current !== null) {
-        window.clearTimeout(aboutPillarHoverTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      setAboutPillarsIntroVisible(true);
-    });
-
-    return () => window.cancelAnimationFrame(frameId);
-  }, []);
-
-  useEffect(() => {
     const intervalId = window.setInterval(() => {
       setAdmissionsBannerIndex(
         (prev) => (prev + 1) % admissionsBannerSlides.length,
@@ -1245,6 +1180,149 @@ export default function Home() {
     }, 3200);
 
     return () => window.clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const section = aboutExperienceSectionRef.current;
+    const deck = aboutExperienceDeckRef.current;
+
+    if (!section || !deck) {
+      return;
+    }
+
+    const cards = Array.from(
+      deck.querySelectorAll<HTMLElement>("[data-about-experience-card]"),
+    );
+    const desktopQuery = window.matchMedia("(min-width: 1024px)");
+    const reducedMotionQuery = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    let frameId = 0;
+    let metrics = {
+      deckHeight: 520,
+      holdDistance: 260,
+      pinOffset: 112,
+      stackDistance: 1,
+      scrollableDistance: 1,
+      startScroll: 0,
+      scrollHeight: 0,
+    };
+
+    const resetDeck = () => {
+      section.style.removeProperty("--about-experience-scroll-height");
+      cards.forEach((card) => {
+        card.style.transform = "";
+        card.style.filter = "";
+        card.style.opacity = "";
+      });
+    };
+
+    const canAnimate = () =>
+      desktopQuery.matches && !reducedMotionQuery.matches && cards.length > 1;
+
+    const measureDeck = () => {
+      if (!canAnimate()) {
+        resetDeck();
+        return;
+      }
+
+      const pinOffset = window.innerWidth >= 1317 ? 118 : 92;
+      const stackDistance = Math.max(
+        (cards.length - 1) * Math.min(Math.max(window.innerHeight * 0.46, 320), 430),
+        1280,
+      );
+      const holdDistance = Math.min(Math.max(window.innerHeight * 0.34, 260), 360);
+      const scrollableDistance = stackDistance + holdDistance;
+      const scrollHeight = Math.ceil(
+        (window.innerHeight - pinOffset) + scrollableDistance + pinOffset,
+      );
+
+      if (metrics.scrollHeight !== scrollHeight) {
+        section.style.setProperty(
+          "--about-experience-scroll-height",
+          `${scrollHeight}px`,
+        );
+      }
+
+      metrics = {
+        deckHeight: deck.clientHeight || 520,
+        holdDistance,
+        pinOffset,
+        stackDistance,
+        scrollableDistance,
+        startScroll: section.offsetTop - pinOffset,
+        scrollHeight,
+      };
+    };
+
+    const syncDeck = () => {
+      frameId = 0;
+
+      if (!canAnimate()) {
+        resetDeck();
+        return;
+      }
+
+      const elapsed = Math.min(
+        Math.max(window.scrollY - metrics.startScroll, 0),
+        metrics.scrollableDistance,
+      );
+      const progress = Math.min(Math.max(elapsed / metrics.stackDistance, 0), 1);
+      const segmentProgress = progress * (cards.length - 1);
+
+      cards.forEach((card, index) => {
+        const enterProgress =
+          index === 0
+            ? 1
+            : Math.min(Math.max(segmentProgress - (index - 1), 0), 1);
+        const depth = Math.min(Math.max(segmentProgress - index, 0), 4);
+        const baseY = index * 20 + 72;
+        const incomingY =
+          index === 0 ? 0 : (1 - enterProgress) * (metrics.deckHeight + 150);
+        const y = baseY + incomingY - depth * 8;
+        const scale = 1 - depth * 0.025;
+        const brightness = 1 - depth * 0.07;
+        const opacity = index === 0 ? 1 : Math.min(Math.max(enterProgress, 0.08), 1);
+
+        card.style.transform = `translate3d(0, ${y}px, 0) scale(${scale})`;
+        card.style.filter = `brightness(${brightness})`;
+        card.style.opacity = `${opacity}`;
+      });
+    };
+
+    const requestSync = () => {
+      if (frameId) {
+        return;
+      }
+
+      frameId = window.requestAnimationFrame(syncDeck);
+    };
+
+    measureDeck();
+    requestSync();
+    window.addEventListener("scroll", requestSync, { passive: true });
+    window.addEventListener("resize", measureDeck);
+    window.addEventListener("resize", requestSync);
+    desktopQuery.addEventListener("change", measureDeck);
+    desktopQuery.addEventListener("change", requestSync);
+    reducedMotionQuery.addEventListener("change", measureDeck);
+    reducedMotionQuery.addEventListener("change", requestSync);
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("scroll", requestSync);
+      window.removeEventListener("resize", measureDeck);
+      window.removeEventListener("resize", requestSync);
+      desktopQuery.removeEventListener("change", measureDeck);
+      desktopQuery.removeEventListener("change", requestSync);
+      reducedMotionQuery.removeEventListener("change", measureDeck);
+      reducedMotionQuery.removeEventListener("change", requestSync);
+      resetDeck();
+    };
   }, []);
 
   useEffect(() => {
@@ -1732,7 +1810,7 @@ export default function Home() {
     : "-translate-y-2 opacity-95";
 
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#E9EFF9]">
+    <main className="min-h-screen bg-[#E9EFF9]">
       <header
         className="fixed inset-x-0 top-0 z-50"
       >
@@ -2212,12 +2290,53 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white pb-0">
-        <div className="px-3 pb-0 pt-8 sm:px-5 sm:pb-0 sm:pt-10 lg:px-8 lg:pb-0 lg:pt-12">
-          <div className="mx-auto w-full max-w-[1320px]">
-            <div className="relative overflow-hidden rounded-[24px] bg-transparent px-4 pb-0 pt-4 sm:rounded-[26px] sm:px-5 sm:pb-0 sm:pt-5">
+      <section
+        className="relative isolate overflow-hidden px-3 py-10 sm:px-5 sm:py-12 lg:px-8 lg:py-14"
+        style={{
+          background:
+            "radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.9), transparent 34%), radial-gradient(circle at 8% 4%, rgba(194, 158, 104, 0.12), transparent 20%), radial-gradient(circle at 94% 6%, rgba(198, 173, 126, 0.18), transparent 18%), linear-gradient(180deg, #faf5ec 0%, #fffdfa 47%, #f8f1e7 100%)",
+        }}
+      >
+        <div
+          aria-hidden="true"
+          className="absolute -left-12 -bottom-10 hidden h-[270px] w-[230px] bg-contain bg-left-bottom bg-no-repeat opacity-[0.54] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute -right-12 -top-14 hidden h-[230px] w-[250px] scale-x-[-1] bg-contain bg-right-top bg-no-repeat opacity-[0.58] lg:block"
+          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute left-0 top-0 hidden h-[142px] w-[142px] opacity-[0.44] md:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(165, 111, 44, 0.64) 2px, transparent 3px)",
+            backgroundSize: "18px 18px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute bottom-7 right-6 hidden h-[112px] w-[112px] opacity-[0.38] md:block"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(165, 111, 44, 0.58) 2px, transparent 3px)",
+            backgroundSize: "17px 17px",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-[-58px] mx-auto h-[260px] max-w-[1040px] rounded-[50%] border-t border-[#ead4af]/60 opacity-80"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-8 bottom-7 h-[130px] rounded-[50%] border-b border-[#dec296]/50 opacity-70"
+        />
+        <div className="relative z-10 mx-auto w-full max-w-[1500px]">
+          <div className="relative px-10 pb-12 pt-2 sm:px-12 sm:pb-14 lg:px-14">
 
-              <div className="relative aspect-[1920/500] overflow-hidden rounded-[18px] bg-transparent shadow-[0_18px_44px_rgba(23,59,108,0.14)] sm:rounded-[20px]">
+              <div className="relative aspect-[1920/500] overflow-hidden rounded-[16px] bg-[#092f66] shadow-[0_24px_48px_rgba(68,44,16,0.22)] ring-1 ring-[#fff5df]/80 sm:rounded-[18px]">
                 <div
                   className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
                   style={{
@@ -2258,7 +2377,38 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="absolute inset-x-0 bottom-3 z-10 flex items-center justify-center gap-3">
+              <button
+                type="button"
+                aria-label="Previous admissions banner"
+                onClick={() =>
+                  setAdmissionsBannerIndex(
+                    (prev) =>
+                      (prev - 1 + admissionsBannerSlides.length) %
+                      admissionsBannerSlides.length,
+                  )
+                }
+                className="absolute left-0 top-[42%] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a3d7b] text-white shadow-[0_14px_26px_rgba(10,61,123,0.26)] ring-4 ring-white/80 transition-all duration-300 hover:-translate-x-0.5 hover:bg-[#082f62] md:flex"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
+                  <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                aria-label="Next admissions banner"
+                onClick={() =>
+                  setAdmissionsBannerIndex(
+                    (prev) => (prev + 1) % admissionsBannerSlides.length,
+                  )
+                }
+                className="absolute right-0 top-[42%] z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-[#0a3d7b] text-white shadow-[0_14px_26px_rgba(10,61,123,0.26)] ring-4 ring-white/80 transition-all duration-300 hover:translate-x-0.5 hover:bg-[#082f62] md:flex"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6" fill="none">
+                  <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+
+              <div className="absolute inset-x-0 bottom-4 z-10 flex items-center justify-center gap-4">
                 {admissionsBannerSlides.map((slide, index) => (
                   <button
                     key={slide.src}
@@ -2267,15 +2417,14 @@ export default function Home() {
                     onClick={() => setAdmissionsBannerIndex(index)}
                     className={`rounded-full transition-all duration-300 ${
                       index === admissionsBannerIndex
-                        ? "h-[6px] w-7 bg-[#4F4CB0]"
-                        : "h-[6px] w-[6px] bg-[#E9EFF9]"
+                        ? "h-3 w-3 bg-[#0b69c7] shadow-[0_0_0_4px_rgba(11,105,199,0.12)]"
+                        : "h-3 w-3 bg-[#cdd1d4] hover:bg-[#9fa8ae]"
                     }`}
                   />
                 ))}
               </div>
             </div>
           </div>
-        </div>
       </section>
 
       <LegacyStatsSection />
@@ -2448,61 +2597,64 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_6%,#fffaf2_0%,#fffdf9_46%,#f6eddf_100%)] px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14 lg:px-8 lg:pb-18 lg:pt-16">
+      <section
+        ref={aboutExperienceSectionRef}
+        className="relative isolate overflow-hidden bg-[radial-gradient(circle_at_50%_6%,#fffaf2_0%,#fffdf9_46%,#f6eddf_100%)] px-4 pb-12 pt-12 sm:px-6 sm:pb-16 sm:pt-14 lg:h-[var(--about-experience-scroll-height,240vh)] lg:overflow-visible lg:px-8 lg:py-0"
+      >
         <div
           aria-hidden="true"
-          className="absolute left-0 top-0 hidden h-[118px] w-[170px] opacity-[0.2] lg:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.4px, transparent 3px)",
-            backgroundSize: "22px 22px",
-          }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -left-1 top-7 hidden h-[300px] w-[210px] bg-contain bg-left-top bg-no-repeat opacity-[0.22] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute right-0 top-10 hidden h-[280px] w-[200px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.16] lg:block"
-          style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -bottom-[88px] -left-[104px] hidden h-[210px] w-[300px] rounded-tr-[180px] bg-[#e6dac2]/70 lg:block"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute bottom-[30px] right-7 hidden h-[126px] w-[130px] opacity-[0.26] lg:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.3px, transparent 3px)",
-            backgroundSize: "20px 20px",
-          }}
-        />
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 1440 220"
-          preserveAspectRatio="none"
-          className="absolute left-0 top-[270px] hidden h-[220px] w-full text-[#b99561]/18 lg:block"
+          className="pointer-events-none sticky top-0 z-0 -mb-[100vh] hidden h-screen lg:block"
         >
-          <path
-            d="M-40 12C210 170 375 160 610 130C844 101 1033 151 1480 6"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="5"
+          <div
+            className="absolute left-0 top-0 h-[118px] w-[170px] opacity-[0.2]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.4px, transparent 3px)",
+              backgroundSize: "22px 22px",
+            }}
           />
-          <path
-            d="M-20 52C226 206 395 197 622 164C864 129 1041 180 1480 42"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
+          <div
+            className="absolute -left-1 top-7 h-[300px] w-[210px] bg-contain bg-left-top bg-no-repeat opacity-[0.22]"
+            style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
           />
-        </svg>
+          <div
+            className="absolute right-0 top-10 h-[280px] w-[200px] scale-x-[-1] bg-contain bg-left-top bg-no-repeat opacity-[0.16]"
+            style={{ backgroundImage: "url('/png/leaf1-optimized.png')" }}
+          />
+          <div
+            className="absolute -bottom-[88px] -left-[104px] h-[210px] w-[300px] rounded-tr-[180px] bg-[#e6dac2]/70"
+          />
+          <div
+            className="absolute bottom-[30px] right-7 h-[126px] w-[130px] opacity-[0.26]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, rgba(139, 101, 52, 0.58) 2.3px, transparent 3px)",
+              backgroundSize: "20px 20px",
+            }}
+          />
+          <svg
+            viewBox="0 0 1440 220"
+            preserveAspectRatio="none"
+            className="absolute left-0 top-[270px] h-[220px] w-full text-[#b99561]/18"
+          >
+            <path
+              d="M-40 12C210 170 375 160 610 130C844 101 1033 151 1480 6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="5"
+            />
+            <path
+              d="M-20 52C226 206 395 197 622 164C864 129 1041 180 1480 42"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            />
+          </svg>
+        </div>
 
-        <div className="relative mx-auto w-full max-w-[1510px]">
-          <div className="mx-auto max-w-[1030px] text-center">
+        <div className="relative z-10 mx-auto w-full max-w-[1510px] lg:sticky lg:top-[92px] lg:flex lg:min-h-[calc(100vh-92px)] lg:flex-col lg:justify-center lg:py-5 min-[1317px]:top-[118px] min-[1317px]:min-h-[calc(100vh-118px)]">
+
+          <div className="relative z-10 mx-auto max-w-[1030px] text-center">
             <div className="mx-auto flex w-[170px] items-center justify-center gap-4 text-[#4B5637]">
               <span className="h-px flex-1 bg-current" />
               <svg aria-hidden="true" viewBox="0 0 34 34" className="h-7 w-7">
@@ -2583,104 +2735,28 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mx-auto mt-8 flex max-w-[1360px] flex-col gap-3 lg:min-h-[340px] lg:flex-row lg:items-stretch lg:gap-3 xl:gap-4">
-            {(() => {
-              const panelIcons: Record<string, string> = {
-                Collaborations: "handshake",
-                "Degree Opportunities": "globe",
-                "Language and Culture": "globe",
-                "International Research Projects": "people",
-                "Global Faculty": "cap",
-                "Career Pathways": "briefcase",
-              };
-              const panelColors: Record<string, string> = {
-                Collaborations: "#667142",
-                "Degree Opportunities": "#9B6B33",
-                "Language and Culture": "#9B6B33",
-                "International Research Projects": "#667142",
-                "Global Faculty": "#9B6B33",
-                "Career Pathways": "#9B6B33",
-              };
-
-              return (
-                <>
-                  {aboutExperiencePillars.map((pillar, index) => {
-                    const color = panelColors[pillar.label] ?? "#667142";
-                    const isActive = index === activeAboutPillarIndex;
-
-                    return (
-                      <button
+          <div
+            ref={aboutExperienceDeckRef}
+            className="relative z-10 mx-auto mt-6 flex w-full max-w-[1120px] flex-col gap-5 lg:h-[590px] lg:overflow-hidden xl:h-[610px]"
+          >
+            {aboutExperienceDeckCards.map((pillar, index) => (
+                      <article
                         key={pillar.label}
-                        type="button"
-                        onMouseEnter={() => activateAboutPillar(index, 70)}
-                        onFocus={() => activateAboutPillar(index)}
-                        onClick={() => activateAboutPillar(index)}
-                        className={`group relative overflow-hidden rounded-[24px] border bg-[#fffaf2]/82 text-left shadow-[0_22px_52px_rgba(84,67,42,0.12)] outline-none backdrop-blur-sm transition-[flex,flex-basis,flex-grow,opacity,transform,border-color,box-shadow,min-height,width] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-[#667142]/40 ${
-                          isActive
-                            ? "min-h-[280px] border-[#d9d6b8] p-0 sm:min-h-[340px] lg:flex-[0_0_900px] xl:flex-[0_0_920px]"
-                            : "min-h-[84px] border-[#dfd3bd] px-3 py-3 lg:flex-[0_0_66px] lg:px-2 lg:py-6 xl:flex-[0_0_72px]"
-                        } ${
-                          aboutPillarsIntroVisible
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-7 opacity-0"
-                        }`}
+                        data-about-experience-card
+                        className="group relative min-h-[420px] overflow-hidden rounded-[24px] bg-[#f4f0e6] p-4 text-left shadow-[0_18px_42px_rgba(84,67,42,0.12)] will-change-transform sm:min-h-[450px] sm:rounded-[26px] sm:p-5 lg:absolute lg:inset-x-0 lg:top-0 lg:min-h-[430px] lg:origin-top lg:rounded-[30px] xl:min-h-[450px]"
                         style={{
-                          borderColor: isActive ? "#d5d0ad" : `${color}45`,
-                          transitionDelay: `${index * 70}ms`,
+                          zIndex: 20 + index,
                         }}
-                        aria-pressed={isActive}
                       >
-                        <div
-                          className={`absolute inset-0 transition-[opacity,transform,filter] duration-[760ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                            isActive
-                              ? "scale-100 opacity-100 blur-0"
-                              : "scale-[1.025] opacity-0 blur-[2px]"
-                          }`}
-                        >
-                          <Image
-                            key={pillar.image}
-                            src={pillar.image}
-                            alt={pillar.title}
-                            fill
-                            sizes="(max-width: 1023px) 100vw, 920px"
-                            className="rounded-[18px] bg-[#eef0e6] object-contain"
-                            style={{
-                              animation: isActive
-                                ? "panelMediaReveal 680ms cubic-bezier(0.22,1,0.36,1) both"
-                                : undefined,
-                            }}
-                          />
-                          <div className="pointer-events-none absolute inset-0 rounded-[18px] border-[7px] border-[#d9d6b8]" />
-                          <div className="absolute inset-0 rounded-[18px] bg-[linear-gradient(90deg,rgba(48,64,35,0.34)_0%,rgba(48,64,35,0.07)_38%,rgba(255,255,255,0)_100%)]" />
-                        </div>
-
-                        <div
-                          className={`relative z-10 flex h-full min-h-[84px] items-center gap-3 transition-all duration-500 lg:min-h-[290px] lg:flex-col lg:justify-start ${
-                            isActive
-                              ? "pointer-events-none translate-y-4 opacity-0"
-                              : "translate-y-0 opacity-100"
-                          }`}
-                        >
-                          <span
-                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-[6px] border-white text-white shadow-[0_12px_26px_rgba(80,58,32,0.16)] lg:h-13 lg:w-13"
-                            style={{ backgroundColor: color }}
-                          >
-                            <AboutExperienceIcon
-                              icon={panelIcons[pillar.label] ?? "globe"}
-                            />
-                          </span>
-                          <span className="hidden h-7 w-px rounded-full lg:block" style={{ backgroundColor: color }} />
-                          <span className="text-[15px] font-semibold leading-tight text-[#24251f] lg:mt-auto lg:[writing-mode:vertical-rl] lg:rotate-180 lg:text-[20px]">
-                            {pillar.label.replace(" Projects", " Research")}
-                          </span>
-                          <span className="hidden h-7 w-1 rounded-full lg:mt-3 lg:block" style={{ backgroundColor: color }} />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </>
-              );
-            })()}
+                        <Image
+                          src={pillar.image}
+                          alt={pillar.title}
+                          fill
+                          sizes="(max-width: 1023px) 100vw, 1120px"
+                          className="object-contain transition-transform duration-700 group-hover:scale-[1.015]"
+                        />
+                      </article>
+            ))}
           </div>
 
 
@@ -3980,7 +4056,7 @@ export default function Home() {
               <p className="mt-6 w-full text-[15.5px] leading-7 text-[#E9EFF9]/88">
                 Transforming education since 1986. Shaping future leaders
                 through innovation, excellence, and holistic development across
-                156+ branches nationwide.
+                950+ branches nationwide.
               </p>
 
               <div className="mt-6 flex flex-nowrap gap-4">
